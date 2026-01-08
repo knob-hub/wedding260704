@@ -1,11 +1,9 @@
 import { motion } from "framer-motion";
-import heroImage from "@/assets/wedding-hero.jpg";
 const HeroSection = () => {
   return <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* Background Image */}
+      {/* Semi-transparent overlay for better text readability */}
       <div className="absolute inset-0 z-0">
-        <img src={heroImage} alt="Wedding decoration" className="w-full h-full object-cover opacity-40" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background/40" />
       </div>
 
       {/* Content */}
