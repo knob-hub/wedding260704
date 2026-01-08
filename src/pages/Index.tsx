@@ -7,14 +7,17 @@ import AccountSection from "@/components/wedding/AccountSection";
 import FooterSection from "@/components/wedding/FooterSection";
 import AnimatedBackground from "@/components/wedding/AnimatedBackground";
 import BGMPlayer from "@/components/wedding/BGMPlayer";
+import FloatingPetals from "@/components/wedding/FloatingPetals";
+import SparkleEffect from "@/components/wedding/SparkleEffect";
 
 const Index = () => {
-  // BGM 파일 경로 - 업로드 후 여기에 경로를 넣어주세요
   const bgmSrc = "/bgm/wedding-music.mp3";
 
   return (
     <main className="min-h-screen relative">
       <AnimatedBackground />
+      <FloatingPetals />
+      <SparkleEffect />
       <BGMPlayer audioSrc={bgmSrc} />
       
       <div className="relative z-10">
