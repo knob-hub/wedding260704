@@ -68,7 +68,7 @@ const CoupleSection = () => {
             <span className="font-medium text-foreground">희원</span>
           </div>
           <div className="flex items-center justify-center gap-2">
-            <span className="text-muted-foreground">최상득· 김영희</span>
+            <span className="text-muted-foreground">최상득· 김경희</span>
             <span className="text-romantic">의 딸</span>
             <span className="font-medium text-foreground">유정</span>
           </div>
