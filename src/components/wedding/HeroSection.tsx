@@ -66,7 +66,7 @@ const HeroSection = () => {
             style={{
               aspectRatio: "3/4",
               objectFit: "cover",
-              objectPosition: "center",
+              objectPosition: "center top",
               boxShadow: "0 8px 30px hsl(var(--blush) / 0.3)",
             }}
           />
