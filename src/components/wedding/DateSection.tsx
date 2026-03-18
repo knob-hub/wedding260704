@@ -53,7 +53,7 @@ const DateSection = () => {
           </div>
 
           <div className="grid grid-cols-7 gap-1 text-center text-sm">
-            {calendarDays.map((week, weekIdx) => week.map((day, dayIdx) => <div key={`${weekIdx}-${dayIdx}`} className={`py-2 ${weekIdx === 0 ? "text-muted-foreground text-xs font-medium" : day === "15" ? "bg-primary text-primary-foreground rounded-full" : dayIdx === 0 ? "text-primary/80" : "text-foreground/70"}`}>
+            {calendarDays.map((week, weekIdx) => week.map((day, dayIdx) => <div key={`${weekIdx}-${dayIdx}`} className={`py-2 ${weekIdx === 0 ? "text-muted-foreground text-xs font-medium" : day === "4" ? "bg-primary text-primary-foreground rounded-full" : dayIdx === 0 ? "text-primary/80" : "text-foreground/70"}`}>
                   {day}
                 </div>))}
           </div>
