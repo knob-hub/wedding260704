@@ -16,9 +16,10 @@ const HeroSection = () => {
           filter: "brightness(0.85) blur(1px)",
         }}
       />
-      <div className="absolute inset-0 z-0" style={{ background: "hsl(var(--background) / 0.55)" }} />
+      <div className="absolute inset-0 z-0" style={{ background: "hsl(var(--background) / 0.7)" }} />
       <motion.div
         className="text-center relative z-10"
+        style={{ textShadow: "0 1px 8px hsl(var(--background) / 0.5)" }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease }}
