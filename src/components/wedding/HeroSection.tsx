@@ -1,4 +1,5 @@
 import { motion, type Easing } from "framer-motion";
+import couplePhoto from "@/assets/1.jpg";
 
 const ease: Easing = [0.25, 0.46, 0.45, 0.94];
 
@@ -6,19 +7,19 @@ const HeroSection = () => {
   return (
     <section className="h-screen flex flex-col items-center justify-center px-8 relative overflow-hidden">
       <motion.div
-        className="text-center relative z-10"
+        className="text-center relative z-10 -mt-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease }}
       >
         <p
-          className="text-[9px] tracking-[0.5em] uppercase mb-12 font-light"
+          className="text-[9px] tracking-[0.5em] uppercase mb-10 font-light"
           style={{ color: "hsl(var(--muted-foreground))" }}
         >
           Wedding Invitation
         </p>
 
-        <div className="flex items-center justify-center gap-6 mb-8">
+        <div className="flex items-center justify-center gap-6 mb-6">
           <div className="text-center">
             <p className="text-[10px] tracking-wider mb-2" style={{ color: "hsl(var(--muted-foreground) / 0.7)" }}>
               김정석 · 이미전<span className="text-[9px]">의 아들</span>
@@ -47,9 +48,27 @@ const HeroSection = () => {
         <p className="text-[11px] tracking-[0.25em] font-light" style={{ color: "hsl(var(--muted-foreground))" }}>
           2026. 07. 04 SAT · PM 2:00
         </p>
-        <p className="text-[10px] tracking-wider mt-1.5" style={{ color: "hsl(var(--muted-foreground) / 0.7)" }}>
+        <p className="text-[10px] tracking-wider mt-1.5 mb-8" style={{ color: "hsl(var(--muted-foreground) / 0.7)" }}>
           더테라스 웨딩 11층
         </p>
+
+        {/* Couple photo */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.4, ease }}
+          className="flex justify-center"
+        >
+          <img
+            src={couplePhoto}
+            alt="커플 사진"
+            className="w-52 md:w-64 rounded-xl object-cover shadow-lg"
+            style={{
+              aspectRatio: "3/4",
+              boxShadow: "0 8px 30px hsl(var(--blush) / 0.3)",
+            }}
+          />
+        </motion.div>
       </motion.div>
 
       {/* Scroll hint */}
