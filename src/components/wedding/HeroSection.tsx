@@ -1,25 +1,12 @@
 import { motion, type Easing } from "framer-motion";
-import heroBg from "@/assets/2.jpg";
 
 const ease: Easing = [0.25, 0.46, 0.45, 0.94];
 
 const HeroSection = () => {
   return (
     <section className="h-screen flex flex-col items-center justify-center px-8 relative overflow-hidden">
-      {/* Background image */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${heroBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center bottom",
-          filter: "brightness(0.85) blur(1px)",
-        }}
-      />
-      <div className="absolute inset-0 z-0" style={{ background: "hsl(var(--background) / 0.7)" }} />
       <motion.div
         className="text-center relative z-10"
-        style={{ textShadow: "0 1px 8px hsl(var(--background) / 0.5)" }}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease }}
