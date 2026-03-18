@@ -8,20 +8,8 @@ const DateSection = () => {
     once: true,
     margin: "-100px"
   });
-  const [daysLeft, setDaysLeft] = useState(0);
-  const weddingDate = new Date("2025-03-15T14:00:00");
-  useEffect(() => {
-    const calculateDaysLeft = () => {
-      const now = new Date();
-      const diff = weddingDate.getTime() - now.getTime();
-      const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-      setDaysLeft(days > 0 ? days : 0);
-    };
-    calculateDaysLeft();
-    const interval = setInterval(calculateDaysLeft, 1000 * 60 * 60);
-    return () => clearInterval(interval);
-  }, []);
-  const calendarDays = [["일", "월", "화", "수", "목", "금", "토"], ["", "", "", "", "", "", "1"], ["2", "3", "4", "5", "6", "7", "8"], ["9", "10", "11", "12", "13", "14", "15"], ["16", "17", "18", "19", "20", "21", "22"], ["23", "24", "25", "26", "27", "28", "29"], ["30", "31", "", "", "", "", ""]];
+  // July 2026 calendar: starts on Wednesday
+  const calendarDays = [["일", "월", "화", "수", "목", "금", "토"], ["", "", "", "1", "2", "3", "4"], ["5", "6", "7", "8", "9", "10", "11"], ["12", "13", "14", "15", "16", "17", "18"], ["19", "20", "21", "22", "23", "24", "25"], ["26", "27", "28", "29", "30", "31", ""]];
   return <section ref={ref} className="wedding-section">
       <motion.div initial={{
       opacity: 0,
