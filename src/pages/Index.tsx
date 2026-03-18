@@ -18,11 +18,6 @@ const Index = () => {
       <div className="relative z-10">
         <HeroSection />
 
-        {/* Gallery button between hero and info */}
-        <div className="flex justify-center -mt-16 mb-8 relative z-10">
-          <GalleryButton onClick={() => setGalleryOpen(true)} />
-        </div>
-
         <InfoSection />
         <AccountSection />
       </div>
