@@ -40,11 +40,11 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
           className="text-center text-sm leading-[2.2] font-light mb-14"
           style={{ color: "hsl(var(--foreground) / 0.6)", fontFamily: "'Gowun Batang', serif" }}
         >
-          서로 다른 길을 걸어온 두 사람이
+          기쁜 날 입니다.
           <br />
-          이제 같은 길을 함께 걸어가려 합니다.
+          하나님께서 세우실 가정을 축복해주셔서 감사드립니다.
           <br />
-          귀한 걸음으로 축복해 주세요.
+          모든 분들에게 주님의 평강이 넘치길 축복합니다.
         </p>
 
         {/* Gallery button */}
