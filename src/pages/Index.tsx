@@ -13,7 +13,7 @@ const Index = () => {
   return (
     <main className="min-h-screen" style={{ background: "hsl(var(--background))" }}>
       <BGMPlayer audioSrc={bgmSrc} />
-      <div className="max-w-lg mx-auto">
+      <div className="max-w-lg mx-auto overflow-hidden">
         <HeroSection />
         <InfoSection onGalleryOpen={() => setGalleryOpen(true)} />
         <AccountSection />
