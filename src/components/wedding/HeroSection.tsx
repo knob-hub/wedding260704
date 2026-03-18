@@ -64,7 +64,7 @@ const HeroSection = () => {
             alt="커플 사진"
             className="w-60 md:w-72 rounded-xl shadow-lg"
             style={{
-              aspectRatio: "3/4",
+              aspectRatio: "2/5",
               objectFit: "cover",
               objectPosition: "center bottom",
               boxShadow: "0 8px 30px hsl(var(--blush) / 0.3)",
