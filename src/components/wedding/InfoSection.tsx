@@ -12,13 +12,13 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
   const calendarDays = [
-    ["일", "월", "화", "수", "목", "금", "토"],
-    ["", "", "", "1", "2", "3", "4"],
-    ["5", "6", "7", "8", "9", "10", "11"],
-    ["12", "13", "14", "15", "16", "17", "18"],
-    ["19", "20", "21", "22", "23", "24", "25"],
-    ["26", "27", "28", "29", "30", "31", ""],
-  ];
+  ["일", "월", "화", "수", "목", "금", "토"],
+  ["", "", "", "1", "2", "3", "4"],
+  ["5", "6", "7", "8", "9", "10", "11"],
+  ["12", "13", "14", "15", "16", "17", "18"],
+  ["19", "20", "21", "22", "23", "24", "25"],
+  ["26", "27", "28", "29", "30", "31", ""]];
+
 
   const handleNaverMap = () => {
     window.open("https://map.naver.com/v5/search/경기 고양시 일산동구 강석로 9", "_blank");
@@ -33,26 +33,26 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 1 }}
-        className="max-w-sm mx-auto"
-      >
+        className="max-w-sm mx-auto">
+        
         {/* Invitation text */}
         <p
           className="text-center text-sm leading-[2.2] font-light mb-14"
-          style={{ color: "hsl(var(--foreground) / 0.6)", fontFamily: "'Gowun Batang', serif" }}
-        >
+          style={{ color: "hsl(var(--foreground) / 0.6)", fontFamily: "'Gowun Batang', serif" }}>
           기쁜 날 입니다.
-          <br />
+하나님께서 세우실 가정을 축복해주셔서 감사드립니다.
+모든 분에게 주님의 평강이 넘치길 축복합니다.<br />
           하나님께서 세우실 가정을 축복해주셔서 감사드립니다.
           <br />
           모든 분들에게 주님의 평강이 넘치길 축복합니다.
         </p>
 
         {/* Gallery button */}
-        {onGalleryOpen && (
-          <div className="flex justify-center mb-10">
+        {onGalleryOpen &&
+        <div className="flex justify-center mb-10">
             <GalleryButton onClick={onGalleryOpen} />
           </div>
-        )}
+        }
 
         {/* Calendar */}
         <div className="mb-14">
@@ -64,37 +64,37 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
             style={{
               background: "hsl(var(--glass-bg))",
               backdropFilter: "blur(16px)",
-              border: "1px solid hsl(var(--glass-border))",
-            }}
-          >
+              border: "1px solid hsl(var(--glass-border))"
+            }}>
+            
             <div className="grid grid-cols-7 gap-0 text-center">
               {calendarDays.map((week, weekIdx) =>
-                week.map((day, dayIdx) => {
-                  const isHeader = weekIdx === 0;
-                  const isWeddingDay = day === "4" && weekIdx > 0;
-                  const isSunday = dayIdx === 0 && !isHeader;
+              week.map((day, dayIdx) => {
+                const isHeader = weekIdx === 0;
+                const isWeddingDay = day === "4" && weekIdx > 0;
+                const isSunday = dayIdx === 0 && !isHeader;
 
-                  return (
-                    <div
-                      key={`${weekIdx}-${dayIdx}`}
-                      className="py-2 text-[11px] relative"
-                      style={
-                        isHeader
-                          ? { color: "hsl(var(--muted-foreground))", fontSize: "9px", letterSpacing: "0.15em" }
-                          : isWeddingDay
-                          ? { color: "hsl(var(--primary-foreground))", fontWeight: 500 }
-                          : isSunday
-                          ? { color: "hsl(var(--primary))" }
-                          : { color: "hsl(var(--foreground) / 0.4)" }
-                      }
-                    >
-                      {isWeddingDay && (
-                        <span className="absolute inset-0 m-auto w-7 h-7 rounded-full" style={{ background: "hsl(var(--primary))" }} />
-                      )}
+                return (
+                  <div
+                    key={`${weekIdx}-${dayIdx}`}
+                    className="py-2 text-[11px] relative"
+                    style={
+                    isHeader ?
+                    { color: "hsl(var(--muted-foreground))", fontSize: "9px", letterSpacing: "0.15em" } :
+                    isWeddingDay ?
+                    { color: "hsl(var(--primary-foreground))", fontWeight: 500 } :
+                    isSunday ?
+                    { color: "hsl(var(--primary))" } :
+                    { color: "hsl(var(--foreground) / 0.4)" }
+                    }>
+                    
+                      {isWeddingDay &&
+                    <span className="absolute inset-0 m-auto w-7 h-7 rounded-full" style={{ background: "hsl(var(--primary))" }} />
+                    }
                       <span className="relative z-10">{day}</span>
-                    </div>
-                  );
-                })
+                    </div>);
+
+              })
               )}
             </div>
           </div>
@@ -130,8 +130,8 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="더테라스 웨딩 위치"
-          />
+            title="더테라스 웨딩 위치" />
+          
         </div>
 
         {/* Map buttons */}
@@ -143,9 +143,9 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
               background: "hsl(var(--glass-bg))",
               backdropFilter: "blur(12px)",
               border: "1px solid hsl(var(--glass-border))",
-              color: "hsl(var(--foreground) / 0.7)",
-            }}
-          >
+              color: "hsl(var(--foreground) / 0.7)"
+            }}>
+            
             <Navigation className="w-2.5 h-2.5" />
             네이버 지도
           </button>
@@ -156,9 +156,9 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
               background: "hsl(var(--glass-bg))",
               backdropFilter: "blur(12px)",
               border: "1px solid hsl(var(--glass-border))",
-              color: "hsl(var(--foreground) / 0.7)",
-            }}
-          >
+              color: "hsl(var(--foreground) / 0.7)"
+            }}>
+            
             <Navigation className="w-2.5 h-2.5" />
             카카오맵
           </button>
@@ -176,8 +176,8 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
           </div>
         </div>
       </motion.div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default InfoSection;
