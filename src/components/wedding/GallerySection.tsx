@@ -10,11 +10,11 @@ const images = [gallery1, gallery2, gallery3];
 const GalleryButton = ({ onClick }: { onClick: () => void }) => (
   <motion.button
     onClick={onClick}
-    className="account-btn flex items-center gap-2"
-    whileTap={{ scale: 0.97 }}
+    className="account-btn flex items-center gap-2 text-[11px] tracking-wider"
+    whileTap={{ scale: 0.96 }}
   >
-    <Images className="w-3 h-3" />
-    Gallery
+    <Images className="w-3.5 h-3.5" />
+    갤러리 보기
   </motion.button>
 );
 
@@ -34,7 +34,7 @@ const GalleryOverlay = ({ onClose }: { onClose: () => void }) => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
       className="fixed inset-0 z-[60] flex items-center justify-center"
-      style={{ background: "hsl(0 0% 4% / 0.96)" }}
+      style={{ background: "hsl(30 5% 5% / 0.95)" }}
       onClick={onClose}
       onTouchStart={(e) => { touchX.current = e.touches[0].clientX; }}
       onTouchEnd={(e) => {
@@ -45,16 +45,16 @@ const GalleryOverlay = ({ onClose }: { onClose: () => void }) => {
       }}
     >
       <button
-        className="absolute top-5 right-5 z-10 w-9 h-9 flex items-center justify-center"
-        style={{ color: "hsl(0 0% 60%)" }}
+        className="absolute top-5 right-5 z-10 w-9 h-9 rounded-full flex items-center justify-center"
+        style={{ background: "hsl(0 0% 100% / 0.1)", color: "hsl(0 0% 80%)" }}
         onClick={onClose}
       >
         <X className="w-4 h-4" />
       </button>
 
       <button
-        className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 flex items-center justify-center"
-        style={{ color: "hsl(0 0% 50%)" }}
+        className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full flex items-center justify-center"
+        style={{ background: "hsl(0 0% 100% / 0.08)", color: "hsl(0 0% 70%)" }}
         onClick={(e) => { e.stopPropagation(); go(-1); }}
       >
         <ChevronLeft className="w-4 h-4" />
@@ -63,33 +63,42 @@ const GalleryOverlay = ({ onClose }: { onClose: () => void }) => {
       <AnimatePresence mode="wait">
         <motion.img
           key={current}
-          initial={{ opacity: 0, x: 30 }}
+          initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -30 }}
-          transition={{ duration: 0.2 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.25 }}
           src={images[current]}
           alt={`Photo ${current + 1}`}
-          className="max-w-[90%] max-h-[85vh] object-contain"
+          className="max-w-[90%] max-h-[85vh] object-contain rounded-xl"
           onClick={(e) => e.stopPropagation()}
         />
       </AnimatePresence>
 
       <button
-        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 flex items-center justify-center"
-        style={{ color: "hsl(0 0% 50%)" }}
+        className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full flex items-center justify-center"
+        style={{ background: "hsl(0 0% 100% / 0.08)", color: "hsl(0 0% 70%)" }}
         onClick={(e) => { e.stopPropagation(); go(1); }}
       >
         <ChevronRight className="w-4 h-4" />
       </button>
 
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
-        <p
-          className="text-[9px] tracking-[0.3em]"
-          style={{ color: "hsl(0 0% 40%)" }}
-        >
-          {current + 1} / {images.length}
-        </p>
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-1.5">
+        {images.map((_, i) => (
+          <div
+            key={i}
+            className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+            style={{
+              background: i === current ? "hsl(0 0% 85%)" : "hsl(0 0% 35%)",
+              transform: i === current ? "scale(1.3)" : "scale(1)",
+            }}
+          />
+        ))}
       </div>
+
+      <p className="absolute bottom-12 left-1/2 -translate-x-1/2 text-[10px] tracking-wider"
+        style={{ color: "hsl(0 0% 50%)" }}>
+        {current + 1} / {images.length}
+      </p>
     </motion.div>
   );
 };
