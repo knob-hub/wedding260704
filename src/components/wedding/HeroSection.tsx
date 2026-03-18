@@ -62,11 +62,11 @@ const HeroSection = () => {
           <img
             src={couplePhoto}
             alt="커플 사진"
-            className="w-52 md:w-64 rounded-xl shadow-lg"
+            className="w-64 md:w-72 rounded-xl shadow-lg"
             style={{
-              aspectRatio: "3/4",
+              aspectRatio: "4/3",
               objectFit: "cover",
-              objectPosition: "center bottom",
+              objectPosition: "center",
               boxShadow: "0 8px 30px hsl(var(--blush) / 0.3)",
             }}
           />
