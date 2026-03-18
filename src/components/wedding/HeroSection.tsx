@@ -18,20 +18,30 @@ const HeroSection = () => {
           Wedding Invitation
         </p>
 
-        <div className="flex items-center justify-center gap-5 mb-8">
-          <h1
-            className="text-[28px] md:text-4xl font-light tracking-[0.15em]"
-            style={{ fontFamily: "'Gowun Batang', serif", color: "hsl(var(--text-romantic))" }}
-          >
-            김희원
-          </h1>
-          <span className="w-px h-6" style={{ background: "hsl(var(--blush))" }} />
-          <h1
-            className="text-[28px] md:text-4xl font-light tracking-[0.15em]"
-            style={{ fontFamily: "'Gowun Batang', serif", color: "hsl(var(--text-romantic))" }}
-          >
-            최유정
-          </h1>
+        <div className="flex items-center justify-center gap-6 mb-8">
+          <div className="text-center">
+            <p className="text-[10px] tracking-wider mb-2" style={{ color: "hsl(var(--muted-foreground) / 0.7)" }}>
+              김정석 · 이미전<span className="text-[9px]">의 아들</span>
+            </p>
+            <h1
+              className="text-[28px] md:text-4xl font-light tracking-[0.15em]"
+              style={{ fontFamily: "'Gowun Batang', serif", color: "hsl(var(--text-romantic))" }}
+            >
+              김희원
+            </h1>
+          </div>
+          <span className="w-px h-10" style={{ background: "hsl(var(--blush))" }} />
+          <div className="text-center">
+            <p className="text-[10px] tracking-wider mb-2" style={{ color: "hsl(var(--muted-foreground) / 0.7)" }}>
+              최상득 · 김경희<span className="text-[9px]">의 딸</span>
+            </p>
+            <h1
+              className="text-[28px] md:text-4xl font-light tracking-[0.15em]"
+              style={{ fontFamily: "'Gowun Batang', serif", color: "hsl(var(--text-romantic))" }}
+            >
+              최유정
+            </h1>
+          </div>
         </div>
 
         <p className="text-[11px] tracking-[0.25em] font-light" style={{ color: "hsl(var(--muted-foreground))" }}>
