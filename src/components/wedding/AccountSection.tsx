@@ -13,7 +13,7 @@ interface AccountInfo {
 
 const AccountSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [openGroom, setOpenGroom] = useState(false);
   const [openBride, setOpenBride] = useState(false);
   const [copiedAccount, setCopiedAccount] = useState<string | null>(null);
@@ -46,11 +46,13 @@ const AccountSection = () => {
     isOpen,
     onToggle,
     label,
+    tag,
   }: {
     accounts: AccountInfo[];
     isOpen: boolean;
     onToggle: () => void;
     label: string;
+    tag: string;
   }) => (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -59,7 +61,12 @@ const AccountSection = () => {
       className="wedding-card"
     >
       <button onClick={onToggle} className="w-full flex items-center justify-between py-1">
-        <span className="font-medium text-foreground text-sm">{label}</span>
+        <div className="flex items-center gap-2.5">
+          <span className="text-[10px] tracking-widest uppercase font-light" style={{ color: "hsl(var(--gold))" }}>
+            {tag}
+          </span>
+          <span className="font-medium text-foreground text-sm tracking-wider">{label}</span>
+        </div>
         <ChevronDown
           className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
           style={{ color: "hsl(var(--muted-foreground))" }}
@@ -72,27 +79,35 @@ const AccountSection = () => {
         transition={{ duration: 0.3 }}
         className="overflow-hidden"
       >
-        <div className="pt-4 space-y-4">
+        <div className="pt-5 space-y-4">
           {accounts.map((acc, idx) => (
-            <div key={idx} className="border-t pt-4 first:border-0 first:pt-0" style={{ borderColor: "hsl(var(--glass-border))" }}>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>{acc.relation}</span>
-                <span className="text-xs font-medium text-foreground">{acc.name}</span>
+            <div
+              key={idx}
+              className="border-t pt-4 first:border-0 first:pt-0"
+              style={{ borderColor: "hsl(var(--border) / 0.5)" }}
+            >
+              <div className="flex items-center justify-between mb-2.5">
+                <span className="text-[11px]" style={{ color: "hsl(var(--muted-foreground))" }}>
+                  {acc.relation}
+                </span>
+                <span className="text-xs font-medium text-foreground tracking-wider">{acc.name}</span>
               </div>
               <div
-                className="flex items-center justify-between rounded-xl p-3"
+                className="flex items-center justify-between rounded-2xl p-3.5"
                 style={{
-                  background: "hsl(var(--glass-bg))",
-                  border: "1px solid hsl(var(--glass-border))",
+                  background: "hsl(var(--background))",
+                  border: "1px solid hsl(var(--border) / 0.5)",
                 }}
               >
                 <div>
-                  <p className="text-[10px] mb-0.5" style={{ color: "hsl(var(--muted-foreground))" }}>{acc.bank}</p>
-                  <p className="text-xs font-medium text-foreground">{acc.account}</p>
+                  <p className="text-[10px] mb-0.5" style={{ color: "hsl(var(--muted-foreground))" }}>
+                    {acc.bank}
+                  </p>
+                  <p className="text-xs font-medium text-foreground tracking-wider">{acc.account}</p>
                 </div>
                 <button
                   onClick={() => copyToClipboard(acc.account)}
-                  className="account-btn flex items-center gap-1 text-xs"
+                  className="account-btn flex items-center gap-1 text-[11px]"
                 >
                   {copiedAccount === acc.account ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                   복사
@@ -106,13 +121,14 @@ const AccountSection = () => {
   );
 
   return (
-    <section ref={ref} className="wedding-section bg-cream">
+    <section ref={ref} className="py-28 px-6">
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1 }}
+        transition={{ duration: 1.2 }}
         className="max-w-md mx-auto"
       >
+        <p className="section-label">Gift</p>
         <h2 className="wedding-title">마음 전하실 곳</h2>
         <div className="wedding-divider" />
 
@@ -120,17 +136,15 @@ const AccountSection = () => {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-center text-xs mb-8 font-light leading-relaxed"
+          className="text-center text-xs mb-10 font-light leading-relaxed"
           style={{ color: "hsl(var(--muted-foreground))" }}
         >
           축하의 마음을 담아 축의금을 전달해 주세요.
-          <br />
-          소중하게 간직하겠습니다.
         </motion.p>
 
         <div className="space-y-3">
-          <AccountCard accounts={groomAccounts} isOpen={openGroom} onToggle={() => setOpenGroom(!openGroom)} label="신랑측 계좌번호" />
-          <AccountCard accounts={brideAccounts} isOpen={openBride} onToggle={() => setOpenBride(!openBride)} label="신부측 계좌번호" />
+          <AccountCard accounts={groomAccounts} isOpen={openGroom} onToggle={() => setOpenGroom(!openGroom)} label="계좌번호" tag="Groom" />
+          <AccountCard accounts={brideAccounts} isOpen={openBride} onToggle={() => setOpenBride(!openBride)} label="계좌번호" tag="Bride" />
         </div>
       </motion.div>
     </section>

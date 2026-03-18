@@ -6,87 +6,107 @@ import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
 import gallery3 from "@/assets/gallery-3.jpg";
 
-// 여기에 사진을 추가하세요. import 후 images 배열에 넣으면 됩니다.
-// 예: import gallery4 from "@/assets/gallery-4.jpg";
-
 const GallerySection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const touchStartX = useRef<number | null>(null);
 
   const images = [gallery1, gallery2, gallery3];
 
   const goNext = useCallback(() => {
-    if (selectedIndex !== null) {
-      setSelectedIndex((selectedIndex + 1) % images.length);
-    }
+    if (selectedIndex !== null) setSelectedIndex((selectedIndex + 1) % images.length);
   }, [selectedIndex, images.length]);
 
   const goPrev = useCallback(() => {
-    if (selectedIndex !== null) {
-      setSelectedIndex((selectedIndex - 1 + images.length) % images.length);
-    }
+    if (selectedIndex !== null) setSelectedIndex((selectedIndex - 1 + images.length) % images.length);
   }, [selectedIndex, images.length]);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
+  const handleTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) goNext();
-      else goPrev();
-    }
+    if (Math.abs(diff) > 50) { diff > 0 ? goNext() : goPrev(); }
     touchStartX.current = null;
   };
 
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      if (e.key === "ArrowRight") goNext();
-      else if (e.key === "ArrowLeft") goPrev();
-      else if (e.key === "Escape") setSelectedIndex(null);
-    },
-    [goNext, goPrev]
-  );
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === "ArrowRight") goNext();
+    else if (e.key === "ArrowLeft") goPrev();
+    else if (e.key === "Escape") setSelectedIndex(null);
+  }, [goNext, goPrev]);
 
   return (
     <>
-      <section ref={ref} className="wedding-section bg-cream">
+      <section ref={ref} className="py-28 px-6">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1 }}
-          className="max-w-md mx-auto"
+          transition={{ duration: 1.2 }}
+          className="max-w-lg mx-auto"
         >
-          <h2 className="wedding-title">갤러리</h2>
+          <p className="section-label">Gallery</p>
+          <h2 className="wedding-title">우리의 순간</h2>
           <div className="wedding-divider" />
 
-          <div className="grid grid-cols-2 gap-3">
-            {images.map((img, idx) => (
+          {/* Staggered editorial grid */}
+          <div className="grid grid-cols-12 gap-3">
+            {/* First image — large, left-aligned */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="col-span-7 cursor-pointer overflow-hidden rounded-3xl"
+              onClick={() => setSelectedIndex(0)}
+            >
+              <img
+                src={images[0]}
+                alt="Gallery 1"
+                className="w-full aspect-[3/4] object-cover transition-transform duration-700 hover:scale-105"
+              />
+            </motion.div>
+
+            {/* Right column — stacked */}
+            <div className="col-span-5 flex flex-col gap-3">
               <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 + idx * 0.1 }}
-                className={`cursor-pointer overflow-hidden rounded-2xl ${
-                  idx === 0 ? "col-span-2" : ""
-                }`}
-                style={{ boxShadow: "var(--glass-shadow)" }}
-                onClick={() => setSelectedIndex(idx)}
+                transition={{ duration: 0.8, delay: 0.35 }}
+                className="cursor-pointer overflow-hidden rounded-3xl mt-8"
+                onClick={() => setSelectedIndex(1)}
               >
                 <img
-                  src={img}
-                  alt={`Gallery ${idx + 1}`}
-                  className={`w-full object-cover transition-transform duration-700 hover:scale-105 ${
-                    idx === 0 ? "aspect-video" : "aspect-square"
-                  }`}
+                  src={images[1]}
+                  alt="Gallery 2"
+                  className="w-full aspect-square object-cover transition-transform duration-700 hover:scale-105"
                 />
               </motion.div>
-            ))}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="cursor-pointer overflow-hidden rounded-3xl"
+                onClick={() => setSelectedIndex(2)}
+              >
+                <img
+                  src={images[2]}
+                  alt="Gallery 3"
+                  className="w-full aspect-[4/3] object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </motion.div>
+            </div>
           </div>
+
+          {/* Image counter */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="text-right mt-4 text-[10px] tracking-[0.3em]"
+            style={{ color: "hsl(var(--muted-foreground))" }}
+          >
+            {images.length} Photos
+          </motion.p>
         </motion.div>
       </section>
 
@@ -97,7 +117,7 @@ const GallerySection = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[60] flex items-center justify-center"
-          style={{ background: "hsl(30 5% 8% / 0.92)", backdropFilter: "blur(20px)" }}
+          style={{ background: "hsl(30 5% 5% / 0.95)", backdropFilter: "blur(30px)" }}
           onClick={() => setSelectedIndex(null)}
           onKeyDown={handleKeyDown}
           tabIndex={0}
@@ -106,21 +126,18 @@ const GallerySection = () => {
         >
           <button
             className="absolute top-5 right-5 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-colors"
-            style={{
-              background: "hsl(30 5% 20% / 0.5)",
-              color: "hsl(30 10% 90%)",
-            }}
+            style={{ background: "hsl(0 0% 100% / 0.1)", color: "hsl(0 0% 80%)" }}
             onClick={() => setSelectedIndex(null)}
           >
             <X className="w-5 h-5" />
           </button>
 
           <button
-            className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-colors"
-            style={{ background: "hsl(30 5% 20% / 0.3)", color: "hsl(30 10% 80%)" }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center"
+            style={{ background: "hsl(0 0% 100% / 0.08)", color: "hsl(0 0% 75%)" }}
             onClick={(e) => { e.stopPropagation(); goPrev(); }}
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
 
           <motion.img
@@ -130,23 +147,31 @@ const GallerySection = () => {
             transition={{ duration: 0.3 }}
             src={images[selectedIndex]}
             alt={`Gallery ${selectedIndex + 1}`}
-            className="max-w-[90%] max-h-[85vh] object-contain rounded-xl"
+            className="max-w-[90%] max-h-[85vh] object-contain rounded-2xl"
             onClick={(e) => e.stopPropagation()}
           />
 
           <button
-            className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-colors"
-            style={{ background: "hsl(30 5% 20% / 0.3)", color: "hsl(30 10% 80%)" }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center"
+            style={{ background: "hsl(0 0% 100% / 0.08)", color: "hsl(0 0% 75%)" }}
             onClick={(e) => { e.stopPropagation(); goNext(); }}
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="w-5 h-5" />
           </button>
 
           <div
-            className="absolute bottom-5 left-1/2 -translate-x-1/2 text-xs tracking-widest"
-            style={{ color: "hsl(30 10% 60%)" }}
+            className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2"
           >
-            {selectedIndex + 1} / {images.length}
+            {images.map((_, i) => (
+              <div
+                key={i}
+                className="w-1.5 h-1.5 rounded-full transition-all duration-300"
+                style={{
+                  background: i === selectedIndex ? "hsl(0 0% 90%)" : "hsl(0 0% 40%)",
+                  transform: i === selectedIndex ? "scale(1.3)" : "scale(1)",
+                }}
+              />
+            ))}
           </div>
         </motion.div>
       )}

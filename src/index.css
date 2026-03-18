@@ -2,62 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@100;300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@100;300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 
 @layer base {
   :root {
-    --background: 30 15% 96%;
-    --foreground: 30 5% 20%;
+    --background: 40 12% 96%;
+    --foreground: 30 8% 15%;
 
-    --card: 30 10% 94%;
-    --card-foreground: 30 5% 20%;
+    --card: 40 10% 97%;
+    --card-foreground: 30 8% 15%;
 
-    --popover: 30 15% 96%;
-    --popover-foreground: 30 5% 20%;
+    --popover: 40 12% 96%;
+    --popover-foreground: 30 8% 15%;
 
-    --primary: 30 8% 45%;
-    --primary-foreground: 30 15% 96%;
+    --primary: 35 6% 40%;
+    --primary-foreground: 40 12% 96%;
 
-    --secondary: 30 8% 90%;
-    --secondary-foreground: 30 5% 25%;
+    --secondary: 38 8% 92%;
+    --secondary-foreground: 30 8% 20%;
 
-    --muted: 30 6% 88%;
-    --muted-foreground: 30 5% 50%;
+    --muted: 38 6% 90%;
+    --muted-foreground: 30 5% 55%;
 
-    --accent: 35 15% 65%;
-    --accent-foreground: 30 5% 20%;
+    --accent: 38 12% 60%;
+    --accent-foreground: 30 8% 15%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 30 8% 85%;
-    --input: 30 8% 85%;
-    --ring: 30 8% 45%;
+    --border: 38 8% 88%;
+    --input: 38 8% 88%;
+    --ring: 35 6% 40%;
 
     --radius: 0.75rem;
 
     /* Wedding specific tokens */
-    --blush: 25 10% 60%;
-    --blush-light: 30 12% 93%;
-    --cream: 35 15% 94%;
-    --gold: 35 20% 50%;
-    --gold-light: 35 18% 70%;
-    --sage: 30 5% 65%;
-    --text-romantic: 30 10% 35%;
+    --blush: 30 8% 58%;
+    --blush-light: 38 10% 94%;
+    --cream: 40 14% 95%;
+    --gold: 38 18% 48%;
+    --gold-light: 38 16% 68%;
+    --sage: 35 5% 62%;
+    --text-romantic: 32 10% 30%;
 
     /* Glassmorphism tokens */
-    --glass-bg: 30 15% 98% / 0.6;
-    --glass-border: 30 10% 90% / 0.5;
-    --glass-blur: 20px;
-    --glass-shadow: 0 8px 32px 0 hsl(30 5% 20% / 0.06);
+    --glass-bg: 40 14% 98% / 0.55;
+    --glass-border: 38 10% 92% / 0.6;
+    --glass-blur: 24px;
+    --glass-shadow: 0 8px 40px 0 hsl(30 5% 20% / 0.04);
 
     /* Gradients */
-    --gradient-romantic: linear-gradient(180deg, hsl(30 12% 93%) 0%, hsl(30 15% 96%) 50%, hsl(35 15% 94%) 100%);
-    --gradient-gold: linear-gradient(135deg, hsl(35 18% 70%) 0%, hsl(35 20% 50%) 100%);
+    --gradient-romantic: linear-gradient(180deg, hsl(38 10% 94%) 0%, hsl(40 12% 96%) 50%, hsl(40 14% 95%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(38 16% 68%) 0%, hsl(38 18% 48%) 100%);
 
     /* Shadows */
-    --shadow-soft: 0 4px 24px -4px hsl(30 5% 20% / 0.08);
-    --shadow-card: 0 8px 32px -8px hsl(30 5% 20% / 0.06);
+    --shadow-soft: 0 4px 30px -4px hsl(30 5% 20% / 0.06);
+    --shadow-card: 0 8px 40px -8px hsl(30 5% 20% / 0.05);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -119,23 +119,29 @@
 
 @layer components {
   .wedding-section {
-    @apply py-20 px-6;
+    @apply py-24 px-6;
+  }
+
+  .section-label {
+    @apply text-[10px] tracking-[0.35em] uppercase font-light text-center mb-3;
+    color: hsl(var(--muted-foreground));
+    font-family: 'Cormorant Garamond', serif;
   }
 
   .wedding-title {
-    @apply text-2xl font-light tracking-wider text-center mb-8;
+    @apply text-2xl font-light tracking-wider text-center mb-2;
     color: hsl(var(--text-romantic));
-    font-family: 'Gowun Batang', 'Cormorant Garamond', serif;
-    letter-spacing: 0.15em;
+    font-family: 'Playfair Display', 'Gowun Batang', serif;
+    letter-spacing: 0.12em;
   }
 
   .wedding-divider {
-    @apply w-12 h-px mx-auto my-8;
-    background: linear-gradient(90deg, transparent, hsl(var(--gold-light)), transparent);
+    @apply w-8 h-px mx-auto my-10;
+    background: hsl(var(--gold-light));
   }
 
   .wedding-card {
-    @apply rounded-2xl p-6;
+    @apply rounded-3xl p-6;
     background: hsl(var(--glass-bg));
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
@@ -144,7 +150,7 @@
   }
 
   .account-btn {
-    @apply px-4 py-2 rounded-full text-sm transition-all duration-300;
+    @apply px-4 py-2 rounded-full text-xs transition-all duration-300;
     background: hsl(var(--glass-bg));
     backdrop-filter: blur(12px);
     border: 1px solid hsl(var(--glass-border));
@@ -159,5 +165,12 @@
 
   .bg-cream {
     background: hsl(var(--cream));
+  }
+
+  .editorial-number {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: hsl(var(--gold-light));
   }
 }
