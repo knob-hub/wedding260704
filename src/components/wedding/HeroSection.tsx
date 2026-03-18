@@ -1,5 +1,5 @@
 import { motion, type Easing } from "framer-motion";
-import heroBg from "@/assets/1.jpg";
+import heroBg from "@/assets/2.jpg";
 
 const ease: Easing = [0.25, 0.46, 0.45, 0.94];
 
