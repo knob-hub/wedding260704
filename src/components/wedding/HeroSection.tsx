@@ -1,5 +1,5 @@
 import { motion, type Easing } from "framer-motion";
-import heroBg from "@/assets/1.jpg";
+import heroBg from "@/assets/2.jpg";
 
 const ease: Easing = [0.25, 0.46, 0.45, 0.94];
 
@@ -12,7 +12,7 @@ const HeroSection = () => {
         style={{
           backgroundImage: `url(${heroBg})`,
           backgroundSize: "cover",
-          backgroundPosition: "center",
+          backgroundPosition: "center top",
           filter: "brightness(0.85) blur(1px)",
         }}
       />
