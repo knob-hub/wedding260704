@@ -9,10 +9,10 @@ const LocationSection = () => {
     margin: "-100px"
   });
   const handleNaverMap = () => {
-    window.open("https://map.naver.com/v5/search/그랜드웨딩홀", "_blank");
+    window.open("https://map.naver.com/v5/search/경기 고양시 일산동구 강석로 9", "_blank");
   };
   const handleKakaoMap = () => {
-    window.open("https://map.kakao.com/link/search/그랜드웨딩홀", "_blank");
+    window.open("https://map.kakao.com/link/search/경기 고양시 일산동구 강석로 9", "_blank");
   };
   return <section ref={ref} className="wedding-section">
       <motion.div initial={{
