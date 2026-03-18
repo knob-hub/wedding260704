@@ -62,7 +62,12 @@ const AccountSection = () => {
   }) => (
     <div
       className="rounded-2xl overflow-hidden"
-      style={{ border: "1px solid hsl(var(--border) / 0.6)", background: "hsl(var(--card))" }}
+      style={{
+        background: "hsl(var(--glass-bg))",
+        backdropFilter: "blur(16px)",
+        border: "1px solid hsl(var(--glass-border))",
+        boxShadow: "var(--glass-shadow)",
+      }}
     >
       <button onClick={onToggle} className="w-full flex items-center justify-between px-5 py-4">
         <span className="text-xs tracking-wider" style={{ color: "hsl(var(--foreground))" }}>{tag}</span>
@@ -83,7 +88,7 @@ const AccountSection = () => {
             <div
               key={idx}
               className="flex items-center justify-between rounded-xl px-4 py-3"
-              style={{ background: "hsl(var(--background))" }}
+              style={{ background: "hsl(var(--background) / 0.6)" }}
             >
               <div>
                 <p className="text-[10px] mb-0.5" style={{ color: "hsl(var(--muted-foreground))" }}>
@@ -94,10 +99,10 @@ const AccountSection = () => {
               <button
                 onClick={() => copyToClipboard(acc.account)}
                 className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
-                style={{ background: "hsl(var(--border) / 0.5)" }}
+                style={{ background: "hsl(var(--blush) / 0.2)" }}
               >
                 {copiedAccount === acc.account
-                  ? <Check className="w-3 h-3" style={{ color: "hsl(var(--foreground))" }} />
+                  ? <Check className="w-3 h-3" style={{ color: "hsl(var(--primary))" }} />
                   : <Copy className="w-3 h-3" style={{ color: "hsl(var(--muted-foreground))" }} />}
               </button>
             </div>
@@ -115,7 +120,7 @@ const AccountSection = () => {
         transition={{ duration: 0.8 }}
         className="max-w-sm mx-auto"
       >
-        <div className="w-6 h-px mx-auto mb-14" style={{ background: "hsl(var(--border))" }} />
+        <div className="w-6 h-px mx-auto mb-14" style={{ background: "hsl(var(--blush))" }} />
 
         <p className="text-center text-[10px] tracking-[0.3em] uppercase mb-6 font-light" style={{ color: "hsl(var(--muted-foreground))" }}>
           Gift
@@ -131,7 +136,12 @@ const AccountSection = () => {
           <button
             onClick={handleShare}
             className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full text-[10px] tracking-wider transition-all active:scale-95 mb-16"
-            style={{ border: "1px solid hsl(var(--border))", color: "hsl(var(--foreground) / 0.6)" }}
+            style={{
+              background: "hsl(var(--glass-bg))",
+              backdropFilter: "blur(12px)",
+              border: "1px solid hsl(var(--glass-border))",
+              color: "hsl(var(--text-romantic))",
+            }}
           >
             <Share2 className="w-3 h-3" />
             청첩장 공유하기
@@ -140,7 +150,7 @@ const AccountSection = () => {
           <p className="text-[10px] tracking-[0.3em]" style={{ color: "hsl(var(--muted-foreground) / 0.6)" }}>
             희원 & 유정
           </p>
-          <p className="text-[9px] mt-1" style={{ color: "hsl(var(--border))" }}>
+          <p className="text-[9px] mt-1" style={{ color: "hsl(var(--blush))" }}>
             2026. 07. 04
           </p>
         </div>

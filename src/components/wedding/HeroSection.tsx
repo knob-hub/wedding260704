@@ -13,7 +13,7 @@ const HeroSection = () => {
       >
         <p
           className="text-[9px] tracking-[0.5em] uppercase mb-12 font-light"
-          style={{ color: "hsl(var(--foreground) / 0.35)" }}
+          style={{ color: "hsl(var(--muted-foreground))" }}
         >
           Wedding Invitation
         </p>
@@ -25,7 +25,7 @@ const HeroSection = () => {
           >
             김희원
           </h1>
-          <span className="w-px h-6" style={{ background: "hsl(var(--gold-light) / 0.5)" }} />
+          <span className="w-px h-6" style={{ background: "hsl(var(--blush))" }} />
           <h1
             className="text-[28px] md:text-4xl font-light tracking-[0.15em]"
             style={{ fontFamily: "'Gowun Batang', serif", color: "hsl(var(--text-romantic))" }}
@@ -34,10 +34,10 @@ const HeroSection = () => {
           </h1>
         </div>
 
-        <p className="text-[11px] tracking-[0.25em] font-light" style={{ color: "hsl(var(--foreground) / 0.4)" }}>
+        <p className="text-[11px] tracking-[0.25em] font-light" style={{ color: "hsl(var(--muted-foreground))" }}>
           2026. 07. 04 SAT · PM 2:00
         </p>
-        <p className="text-[10px] tracking-wider mt-1.5" style={{ color: "hsl(var(--foreground) / 0.3)" }}>
+        <p className="text-[10px] tracking-wider mt-1.5" style={{ color: "hsl(var(--muted-foreground) / 0.7)" }}>
           더테라스 웨딩 11층
         </p>
       </motion.div>
@@ -53,7 +53,7 @@ const HeroSection = () => {
           animate={{ y: [0, 5, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="w-px h-6"
-          style={{ background: "linear-gradient(to bottom, hsl(var(--foreground) / 0.15), transparent)" }}
+          style={{ background: "linear-gradient(to bottom, hsl(var(--blush)), transparent)" }}
         />
       </motion.div>
     </section>
