@@ -38,10 +38,10 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
         {/* Invitation text */}
         <p
           className="text-center text-sm leading-[2.2] font-light mb-14"
-          style={{ color: "hsl(var(--foreground) / 0.6)", fontFamily: "'Gowun Batang', serif" }}>
-          기쁜 날 입니다.
+          style={{ color: "hsl(var(--foreground) / 0.6)", fontFamily: "'Gowun Batang', serif" }}>기쁜 날 입니다.
 하나님께서 세우실 가정을 축복해주셔서 감사드립니다.
-모든 분에게 주님의 평강이 넘치길 축복합니다.<br />
+모든 분에게 주님의 평강이 넘치길 축복합니다.
+          <br />
           하나님께서 세우실 가정을 축복해주셔서 감사드립니다.
           <br />
           모든 분들에게 주님의 평강이 넘치길 축복합니다.
