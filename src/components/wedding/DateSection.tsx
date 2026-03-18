@@ -59,18 +59,6 @@ const DateSection = () => {
           </div>
         </motion.div>
 
-        {/* D-Day Counter */}
-        <motion.div initial={{
-        opacity: 0
-      }} animate={isInView ? {
-        opacity: 1
-      } : {}} transition={{
-        duration: 0.8,
-        delay: 0.5
-      }} className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blush-light">
-          <span className="text-romantic text-sm">결혼식까지</span>
-          <span className="text-lg font-medium text-primary">D-{daysLeft}</span>
-        </motion.div>
       </motion.div>
     </section>;
 };
