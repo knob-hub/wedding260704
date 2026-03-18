@@ -28,7 +28,7 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
   };
 
   return (
-    <section ref={ref} className="py-16 px-6">
+    <section ref={ref} className="magazine-section">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -37,8 +37,8 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
       >
         {/* Invitation text */}
         <p
-          className="text-center text-sm leading-[2.2] font-light mb-14"
-          style={{ color: "hsl(var(--foreground) / 0.6)", fontFamily: "'Gowun Batang', serif" }}
+          className="text-center text-sm leading-[2.4] font-light mb-16"
+          style={{ color: "hsl(var(--charcoal-light))", fontFamily: "'Gowun Batang', serif" }}
         >
           서로 다른 길을 걸어온 두 사람이
           <br />
@@ -49,24 +49,18 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
 
         {/* Gallery button */}
         {onGalleryOpen && (
-          <div className="flex justify-center mb-10">
+          <div className="flex justify-center mb-16">
             <GalleryButton onClick={onGalleryOpen} />
           </div>
         )}
 
+        {/* Divider */}
+        <div className="magazine-divider" />
+
         {/* Calendar */}
-        <div className="mb-14">
-          <p className="text-center text-[10px] tracking-[0.3em] uppercase mb-6 font-light" style={{ color: "hsl(var(--muted-foreground))" }}>
-            July 2026
-          </p>
-          <div
-            className="rounded-2xl p-5 max-w-[280px] mx-auto"
-            style={{
-              background: "hsl(var(--glass-bg))",
-              backdropFilter: "blur(16px)",
-              border: "1px solid hsl(var(--glass-border))",
-            }}
-          >
+        <div className="mb-16">
+          <p className="section-label mb-8">July 2026</p>
+          <div className="max-w-[260px] mx-auto">
             <div className="grid grid-cols-7 gap-0 text-center">
               {calendarDays.map((week, weekIdx) =>
                 week.map((day, dayIdx) => {
@@ -77,19 +71,22 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
                   return (
                     <div
                       key={`${weekIdx}-${dayIdx}`}
-                      className="py-2 text-[11px] relative"
+                      className="py-2.5 text-[11px] relative"
                       style={
                         isHeader
-                          ? { color: "hsl(var(--muted-foreground))", fontSize: "9px", letterSpacing: "0.15em" }
+                          ? { color: "hsl(var(--silver))", fontSize: "8px", letterSpacing: "0.2em", textTransform: "uppercase" as const }
                           : isWeddingDay
                           ? { color: "hsl(var(--primary-foreground))", fontWeight: 500 }
                           : isSunday
-                          ? { color: "hsl(var(--primary))" }
-                          : { color: "hsl(var(--foreground) / 0.4)" }
+                          ? { color: "hsl(var(--charcoal-light))" }
+                          : { color: "hsl(var(--muted-foreground))" }
                       }
                     >
                       {isWeddingDay && (
-                        <span className="absolute inset-0 m-auto w-7 h-7 rounded-full" style={{ background: "hsl(var(--primary))" }} />
+                        <span
+                          className="absolute inset-0 m-auto w-7 h-7 rounded-full"
+                          style={{ background: "hsl(var(--charcoal))" }}
+                        />
                       )}
                       <span className="relative z-10">{day}</span>
                     </div>
@@ -98,30 +95,45 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
               )}
             </div>
           </div>
+
+          <p
+            className="text-center text-[10px] tracking-[0.2em] mt-6 font-light"
+            style={{ color: "hsl(var(--charcoal-light))", fontFamily: "'Gowun Batang', serif" }}
+          >
+            토요일 오후 두 시
+          </p>
         </div>
 
         {/* Divider */}
-        <div className="w-6 h-px mx-auto mb-14" style={{ background: "hsl(var(--blush))" }} />
+        <div className="magazine-divider" />
 
         {/* Location */}
         <div className="text-center mb-8">
-          <p className="text-[10px] tracking-[0.3em] uppercase mb-4 font-light" style={{ color: "hsl(var(--muted-foreground))" }}>
-            Location
-          </p>
-          <p className="text-base tracking-wider mb-1" style={{ fontFamily: "'Gowun Batang', serif", color: "hsl(var(--foreground))" }}>
+          <p className="section-label mb-6">Location</p>
+          <p
+            className="text-base tracking-[0.15em] mb-1.5"
+            style={{ fontFamily: "'Gowun Batang', serif", color: "hsl(var(--foreground))" }}
+          >
             더테라스 웨딩
           </p>
           <p className="text-[11px] mb-2" style={{ color: "hsl(var(--muted-foreground))" }}>
             경기 고양시 일산동구 강석로 9 · 11층
           </p>
-          <a href="tel:031-905-1001" className="text-[10px] underline-offset-2 hover:underline" style={{ color: "hsl(var(--muted-foreground))" }}>
+          <a
+            href="tel:031-905-1001"
+            className="text-[10px] underline-offset-2 hover:underline"
+            style={{ color: "hsl(var(--silver))" }}
+          >
             <Phone className="w-2.5 h-2.5 inline mr-1" />
             031-905-1001
           </a>
         </div>
 
         {/* Map */}
-        <div className="rounded-2xl aspect-[16/10] mb-3 overflow-hidden" style={{ border: "1px solid hsl(var(--border) / 0.5)" }}>
+        <div
+          className="aspect-[16/10] mb-3 overflow-hidden"
+          style={{ border: "1px solid hsl(var(--border))" }}
+        >
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3158.5!2d126.7685!3d37.6425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z6rK96riwIOqzoOyWkeyLnCDsnbzsgrDrj5nqtawg6rCV7ISd66GcIDk!5e0!3m2!1sko!2skr!4v1704067200000!5m2!1sko!2skr"
             width="100%"
@@ -135,15 +147,13 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
         </div>
 
         {/* Map buttons */}
-        <div className="flex gap-2 mb-10">
+        <div className="flex gap-2 mb-12">
           <button
             onClick={handleNaverMap}
-            className="flex-1 py-2.5 rounded-full text-[10px] flex items-center justify-center gap-1 transition-all active:scale-95"
+            className="flex-1 py-2.5 text-[9px] tracking-[0.15em] flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
             style={{
-              background: "hsl(var(--glass-bg))",
-              backdropFilter: "blur(12px)",
-              border: "1px solid hsl(var(--glass-border))",
-              color: "hsl(var(--foreground) / 0.7)",
+              border: "1px solid hsl(var(--divider))",
+              color: "hsl(var(--charcoal-light))",
             }}
           >
             <Navigation className="w-2.5 h-2.5" />
@@ -151,12 +161,10 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
           </button>
           <button
             onClick={handleKakaoMap}
-            className="flex-1 py-2.5 rounded-full text-[10px] flex items-center justify-center gap-1 transition-all active:scale-95"
+            className="flex-1 py-2.5 text-[9px] tracking-[0.15em] flex items-center justify-center gap-1.5 transition-all active:scale-[0.98]"
             style={{
-              background: "hsl(var(--glass-bg))",
-              backdropFilter: "blur(12px)",
-              border: "1px solid hsl(var(--glass-border))",
-              color: "hsl(var(--foreground) / 0.7)",
+              border: "1px solid hsl(var(--divider))",
+              color: "hsl(var(--charcoal-light))",
             }}
           >
             <Navigation className="w-2.5 h-2.5" />
@@ -167,12 +175,12 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
         {/* Transportation */}
         <div className="space-y-3 text-[11px]">
           <div className="flex items-start gap-3">
-            <Train className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{ color: "hsl(var(--muted-foreground))" }} />
-            <p style={{ color: "hsl(var(--foreground) / 0.55)" }}>3호선 백석역 5,6번 출구에서 도보 5분</p>
+            <Train className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{ color: "hsl(var(--silver))" }} />
+            <p style={{ color: "hsl(var(--muted-foreground))" }}>3호선 백석역 5,6번 출구에서 도보 5분</p>
           </div>
           <div className="flex items-start gap-3">
-            <Car className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{ color: "hsl(var(--muted-foreground))" }} />
-            <p style={{ color: "hsl(var(--foreground) / 0.55)" }}>건물 주차장 이용 (2시간 무료)</p>
+            <Car className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{ color: "hsl(var(--silver))" }} />
+            <p style={{ color: "hsl(var(--muted-foreground))" }}>건물 주차장 이용 (2시간 무료)</p>
           </div>
         </div>
       </motion.div>

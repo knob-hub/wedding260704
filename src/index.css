@@ -6,56 +6,52 @@
 
 @layer base {
   :root {
-    --background: 30 25% 96%;
-    --foreground: 340 10% 20%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 12%;
 
-    --card: 30 20% 97%;
-    --card-foreground: 340 10% 20%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 12%;
 
-    --popover: 30 25% 96%;
-    --popover-foreground: 340 10% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 12%;
 
-    --primary: 340 18% 55%;
-    --primary-foreground: 30 25% 97%;
+    --primary: 0 0% 18%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 30 15% 92%;
-    --secondary-foreground: 340 10% 25%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 18%;
 
-    --muted: 30 12% 90%;
-    --muted-foreground: 340 8% 50%;
+    --muted: 0 0% 93%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 340 14% 65%;
-    --accent-foreground: 340 10% 20%;
+    --accent: 0 0% 90%;
+    --accent-foreground: 0 0% 12%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 340 10% 85%;
-    --input: 340 10% 85%;
-    --ring: 340 18% 55%;
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 0 0% 18%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Wedding tokens */
-    --blush: 340 20% 75%;
-    --blush-light: 340 18% 93%;
-    --cream: 30 25% 95%;
-    --gold: 35 30% 50%;
-    --gold-light: 35 25% 65%;
-    --sage: 140 8% 62%;
-    --text-romantic: 340 12% 28%;
+    /* Magazine tokens */
+    --silver: 0 0% 72%;
+    --silver-light: 0 0% 92%;
+    --charcoal: 0 0% 22%;
+    --charcoal-light: 0 0% 35%;
+    --warm-white: 30 10% 97%;
+    --divider: 0 0% 82%;
 
-    /* Watercolor gradient */
-    --watercolor-start: 340 28% 88%;
-    --watercolor-mid: 20 22% 92%;
-    --watercolor-end: 30 25% 96%;
-    --watercolor-accent: 340 22% 82%;
+    /* Editorial accent */
+    --editorial-accent: 0 0% 15%;
 
-    /* Glassmorphism */
-    --glass-bg: 0 0% 100% / 0.45;
-    --glass-border: 340 15% 90% / 0.6;
+    /* Glass - subtle for magazine */
+    --glass-bg: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 88% / 0.5;
     --glass-blur: 20px;
-    --glass-shadow: 0 8px 32px 0 hsl(340 10% 50% / 0.06);
+    --glass-shadow: 0 4px 24px 0 hsl(0 0% 0% / 0.04);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -68,25 +64,25 @@
   }
 
   .dark {
-    --background: 340 5% 8%;
-    --foreground: 340 10% 90%;
-    --card: 340 5% 10%;
-    --card-foreground: 340 10% 90%;
-    --popover: 340 5% 10%;
-    --popover-foreground: 340 10% 90%;
-    --primary: 340 15% 60%;
-    --primary-foreground: 340 5% 8%;
-    --secondary: 340 5% 15%;
-    --secondary-foreground: 340 10% 90%;
-    --muted: 340 5% 15%;
-    --muted-foreground: 340 8% 55%;
-    --accent: 340 12% 50%;
-    --accent-foreground: 340 10% 90%;
+    --background: 0 0% 6%;
+    --foreground: 0 0% 92%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 92%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 92%;
+    --primary: 0 0% 85%;
+    --primary-foreground: 0 0% 6%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 92%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 0 0% 16%;
+    --accent-foreground: 0 0% 92%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 340 5% 18%;
-    --input: 340 5% 18%;
-    --ring: 340 15% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 0 0% 85%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -111,35 +107,37 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Gowun Batang', 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', 'Gowun Batang', serif;
   }
 }
 
 @layer components {
-  .wedding-section {
-    @apply py-24 px-6;
+  /* Magazine layout */
+  .magazine-section {
+    @apply px-6 py-20;
   }
 
   .section-label {
-    @apply text-[10px] tracking-[0.35em] uppercase font-light text-center mb-3;
+    @apply text-[9px] tracking-[0.4em] uppercase font-light text-center mb-3;
     color: hsl(var(--muted-foreground));
+    font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: 0.4em;
+  }
+
+  .magazine-title {
+    @apply text-lg font-light tracking-[0.2em] text-center;
+    color: hsl(var(--charcoal));
     font-family: 'Cormorant Garamond', serif;
+    text-transform: uppercase;
   }
 
-  .wedding-title {
-    @apply text-2xl font-light tracking-wider text-center mb-2;
-    color: hsl(var(--text-romantic));
-    font-family: 'Playfair Display', 'Gowun Batang', serif;
-    letter-spacing: 0.12em;
+  .magazine-divider {
+    @apply w-10 h-px mx-auto my-12;
+    background: hsl(var(--divider));
   }
 
-  .wedding-divider {
-    @apply w-8 h-px mx-auto my-10;
-    background: hsl(var(--blush));
-  }
-
-  .wedding-card {
-    @apply rounded-3xl p-6;
+  .magazine-card {
+    @apply rounded-lg p-5;
     background: hsl(var(--glass-bg));
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
@@ -148,41 +146,38 @@
   }
 
   .account-btn {
-    @apply px-4 py-2 rounded-full text-xs transition-all duration-300;
-    background: hsl(var(--glass-bg));
-    backdrop-filter: blur(12px);
-    border: 1px solid hsl(var(--glass-border));
-    color: hsl(var(--text-romantic));
+    @apply px-5 py-2.5 rounded-none text-[9px] tracking-[0.25em] uppercase transition-all duration-300;
+    background: transparent;
+    border: 1px solid hsl(var(--divider));
+    color: hsl(var(--charcoal));
+    font-family: 'Noto Sans KR', sans-serif;
   }
 
   .account-btn:hover {
     background: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
-    border-color: transparent;
-  }
-
-  .bg-cream {
-    background: hsl(var(--cream));
+    border-color: hsl(var(--primary));
   }
 
   .editorial-number {
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-weight: 400;
-    color: hsl(var(--blush));
+    color: hsl(var(--silver));
   }
 
-  /* Watercolor background */
-  .watercolor-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background:
-      radial-gradient(ellipse 120% 80% at 20% 10%, hsl(var(--watercolor-start)) 0%, transparent 50%),
-      radial-gradient(ellipse 100% 60% at 80% 30%, hsl(var(--watercolor-accent) / 0.4) 0%, transparent 45%),
-      radial-gradient(ellipse 90% 70% at 50% 60%, hsl(var(--watercolor-mid)) 0%, transparent 50%),
-      radial-gradient(ellipse 110% 50% at 30% 90%, hsl(var(--watercolor-start) / 0.6) 0%, transparent 40%),
-      radial-gradient(ellipse 80% 60% at 70% 80%, hsl(var(--watercolor-accent) / 0.25) 0%, transparent 45%),
-      hsl(var(--watercolor-end));
+  /* Full-bleed image container */
+  .magazine-hero-img {
+    @apply w-full;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    filter: grayscale(15%) contrast(1.02);
+  }
+
+  /* Caption style */
+  .magazine-caption {
+    @apply text-[9px] tracking-[0.3em] uppercase;
+    color: hsl(var(--muted-foreground));
+    font-family: 'Noto Sans KR', sans-serif;
   }
 }

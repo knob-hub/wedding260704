@@ -1,59 +1,87 @@
 import { motion, type Easing } from "framer-motion";
+import coupleImg from "@/assets/couple-main.jpg";
 
 const ease: Easing = [0.25, 0.46, 0.45, 0.94];
 
 const HeroSection = () => {
   return (
-    <section className="h-screen flex flex-col items-center justify-center px-8">
+    <section className="min-h-screen flex flex-col">
+      {/* Editorial header */}
       <motion.div
-        className="text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease }}
+        className="pt-14 pb-8 px-8 text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, ease }}
       >
-        <p
-          className="text-[9px] tracking-[0.5em] uppercase mb-12 font-light"
-          style={{ color: "hsl(var(--muted-foreground))" }}
-        >
-          Wedding Invitation
-        </p>
-
-        <div className="flex items-center justify-center gap-5 mb-8">
+        <p className="magazine-caption mb-6">The Wedding of</p>
+        <div className="flex items-center justify-center gap-4 mb-3">
           <h1
-            className="text-[28px] md:text-4xl font-light tracking-[0.15em]"
-            style={{ fontFamily: "'Gowun Batang', serif", color: "hsl(var(--text-romantic))" }}
+            className="text-3xl md:text-4xl font-light tracking-[0.18em]"
+            style={{ fontFamily: "'Cormorant Garamond', serif", color: "hsl(var(--charcoal))" }}
           >
-            김희원
+            희원
           </h1>
-          <span className="w-px h-6" style={{ background: "hsl(var(--blush))" }} />
-          <h1
-            className="text-[28px] md:text-4xl font-light tracking-[0.15em]"
-            style={{ fontFamily: "'Gowun Batang', serif", color: "hsl(var(--text-romantic))" }}
+          <span
+            className="text-lg font-light"
+            style={{ fontFamily: "'Cormorant Garamond', serif", color: "hsl(var(--silver))" }}
           >
-            최유정
+            &
+          </span>
+          <h1
+            className="text-3xl md:text-4xl font-light tracking-[0.18em]"
+            style={{ fontFamily: "'Cormorant Garamond', serif", color: "hsl(var(--charcoal))" }}
+          >
+            유정
           </h1>
         </div>
-
-        <p className="text-[11px] tracking-[0.25em] font-light" style={{ color: "hsl(var(--muted-foreground))" }}>
-          2026. 07. 04 SAT · PM 2:00
-        </p>
-        <p className="text-[10px] tracking-wider mt-1.5" style={{ color: "hsl(var(--muted-foreground) / 0.7)" }}>
-          더테라스 웨딩 11층
+        <p
+          className="text-[10px] tracking-[0.35em] font-light"
+          style={{ color: "hsl(var(--muted-foreground))" }}
+        >
+          2026. 07. 04 SAT
         </p>
       </motion.div>
 
-      {/* Scroll hint */}
+      {/* Full-bleed photo */}
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        className="flex-1 px-6 pb-6"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, delay: 0.3, ease }}
+      >
+        <div className="relative h-full max-w-lg mx-auto overflow-hidden">
+          <img
+            src={coupleImg}
+            alt="희원 & 유정"
+            className="magazine-hero-img w-full h-full object-cover"
+          />
+          {/* Photo caption */}
+          <div className="absolute bottom-0 left-0 right-0 p-5 text-right">
+            <p
+              className="text-[8px] tracking-[0.3em]"
+              style={{ color: "hsl(0 0% 100% / 0.6)" }}
+            >
+              ILSAN · KOREA
+            </p>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="py-6 flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
       >
+        <p className="text-[8px] tracking-[0.4em] uppercase" style={{ color: "hsl(var(--silver))" }}>
+          Scroll
+        </p>
         <motion.div
-          animate={{ y: [0, 5, 0] }}
+          animate={{ y: [0, 4, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="w-px h-6"
-          style={{ background: "linear-gradient(to bottom, hsl(var(--blush)), transparent)" }}
+          className="w-px h-5"
+          style={{ background: "linear-gradient(to bottom, hsl(var(--silver)), transparent)" }}
         />
       </motion.div>
     </section>
