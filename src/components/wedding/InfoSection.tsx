@@ -47,6 +47,13 @@ const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
           귀한 걸음으로 축복해 주세요.
         </p>
 
+        {/* Gallery button */}
+        {onGalleryOpen && (
+          <div className="flex justify-center mb-10">
+            <GalleryButton onClick={onGalleryOpen} />
+          </div>
+        )}
+
         {/* Calendar */}
         <div className="mb-14">
           <p className="text-center text-[10px] tracking-[0.3em] uppercase mb-6 font-light" style={{ color: "hsl(var(--muted-foreground))" }}>
