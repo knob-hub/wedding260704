@@ -1,7 +1,6 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ChevronDown, Copy, Check } from "lucide-react";
+import { ChevronDown, Copy, Check, Share2 } from "lucide-react";
 import { toast } from "sonner";
 
 interface AccountInfo {
@@ -13,7 +12,7 @@ interface AccountInfo {
 
 const AccountSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
   const [openGroom, setOpenGroom] = useState(false);
   const [openBride, setOpenBride] = useState(false);
   const [copiedAccount, setCopiedAccount] = useState<string | null>(null);
@@ -41,34 +40,34 @@ const AccountSection = () => {
     }
   };
 
-  const AccountCard = ({
-    accounts,
-    isOpen,
-    onToggle,
-    label,
-    tag,
+  const handleShare = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: "희원 ♥ 유정 결혼합니다",
+          text: "2026년 7월 4일 토요일 오후 2시\n더테라스 웨딩 11층",
+          url: window.location.href,
+        });
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        toast.success("링크가 복사되었습니다");
+      }
+    } catch { /* cancelled */ }
+  };
+
+  const AccordionCard = ({
+    accounts, isOpen, onToggle, tag,
   }: {
-    accounts: AccountInfo[];
-    isOpen: boolean;
-    onToggle: () => void;
-    label: string;
-    tag: string;
+    accounts: AccountInfo[]; isOpen: boolean; onToggle: () => void; tag: string;
   }) => (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6 }}
-      className="wedding-card"
+    <div
+      className="rounded-2xl overflow-hidden"
+      style={{ border: "1px solid hsl(var(--border) / 0.6)", background: "hsl(var(--card))" }}
     >
-      <button onClick={onToggle} className="w-full flex items-center justify-between py-1">
-        <div className="flex items-center gap-2.5">
-          <span className="text-[10px] tracking-widest uppercase font-light" style={{ color: "hsl(var(--gold))" }}>
-            {tag}
-          </span>
-          <span className="font-medium text-foreground text-sm tracking-wider">{label}</span>
-        </div>
+      <button onClick={onToggle} className="w-full flex items-center justify-between px-5 py-4">
+        <span className="text-xs tracking-wider" style={{ color: "hsl(var(--foreground))" }}>{tag}</span>
         <ChevronDown
-          className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+          className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
           style={{ color: "hsl(var(--muted-foreground))" }}
         />
       </button>
@@ -79,72 +78,71 @@ const AccountSection = () => {
         transition={{ duration: 0.3 }}
         className="overflow-hidden"
       >
-        <div className="pt-5 space-y-4">
+        <div className="px-5 pb-5 space-y-3">
           {accounts.map((acc, idx) => (
             <div
               key={idx}
-              className="border-t pt-4 first:border-0 first:pt-0"
-              style={{ borderColor: "hsl(var(--border) / 0.5)" }}
+              className="flex items-center justify-between rounded-xl px-4 py-3"
+              style={{ background: "hsl(var(--background))" }}
             >
-              <div className="flex items-center justify-between mb-2.5">
-                <span className="text-[11px]" style={{ color: "hsl(var(--muted-foreground))" }}>
-                  {acc.relation}
-                </span>
-                <span className="text-xs font-medium text-foreground tracking-wider">{acc.name}</span>
+              <div>
+                <p className="text-[10px] mb-0.5" style={{ color: "hsl(var(--muted-foreground))" }}>
+                  {acc.relation} · {acc.bank}
+                </p>
+                <p className="text-xs tracking-wider" style={{ color: "hsl(var(--foreground))" }}>{acc.account}</p>
               </div>
-              <div
-                className="flex items-center justify-between rounded-2xl p-3.5"
-                style={{
-                  background: "hsl(var(--background))",
-                  border: "1px solid hsl(var(--border) / 0.5)",
-                }}
+              <button
+                onClick={() => copyToClipboard(acc.account)}
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+                style={{ background: "hsl(var(--border) / 0.5)" }}
               >
-                <div>
-                  <p className="text-[10px] mb-0.5" style={{ color: "hsl(var(--muted-foreground))" }}>
-                    {acc.bank}
-                  </p>
-                  <p className="text-xs font-medium text-foreground tracking-wider">{acc.account}</p>
-                </div>
-                <button
-                  onClick={() => copyToClipboard(acc.account)}
-                  className="account-btn flex items-center gap-1 text-[11px]"
-                >
-                  {copiedAccount === acc.account ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
-                  복사
-                </button>
-              </div>
+                {copiedAccount === acc.account
+                  ? <Check className="w-3 h-3" style={{ color: "hsl(var(--foreground))" }} />
+                  : <Copy className="w-3 h-3" style={{ color: "hsl(var(--muted-foreground))" }} />}
+              </button>
             </div>
           ))}
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 
   return (
-    <section ref={ref} className="py-28 px-6">
+    <section ref={ref} className="py-16 px-6 pb-24">
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1.2 }}
-        className="max-w-md mx-auto"
+        transition={{ duration: 0.8 }}
+        className="max-w-sm mx-auto"
       >
-        <p className="section-label">Gift</p>
-        <h2 className="wedding-title">마음 전하실 곳</h2>
-        <div className="wedding-divider" />
+        <div className="w-6 h-px mx-auto mb-14" style={{ background: "hsl(var(--border))" }} />
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-center text-xs mb-10 font-light leading-relaxed"
-          style={{ color: "hsl(var(--muted-foreground))" }}
-        >
-          축하의 마음을 담아 축의금을 전달해 주세요.
-        </motion.p>
+        <p className="text-center text-[10px] tracking-[0.3em] uppercase mb-6 font-light" style={{ color: "hsl(var(--muted-foreground))" }}>
+          Gift
+        </p>
 
-        <div className="space-y-3">
-          <AccountCard accounts={groomAccounts} isOpen={openGroom} onToggle={() => setOpenGroom(!openGroom)} label="계좌번호" tag="Groom" />
-          <AccountCard accounts={brideAccounts} isOpen={openBride} onToggle={() => setOpenBride(!openBride)} label="계좌번호" tag="Bride" />
+        <div className="space-y-2 mb-14">
+          <AccordionCard accounts={groomAccounts} isOpen={openGroom} onToggle={() => setOpenGroom(!openGroom)} tag="신랑측 계좌번호" />
+          <AccordionCard accounts={brideAccounts} isOpen={openBride} onToggle={() => setOpenBride(!openBride)} tag="신부측 계좌번호" />
+        </div>
+
+        {/* Share + Footer */}
+        <div className="text-center">
+          <button
+            onClick={handleShare}
+            className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full text-[10px] tracking-wider transition-all active:scale-95 mb-16"
+            style={{ border: "1px solid hsl(var(--border))", color: "hsl(var(--foreground) / 0.6)" }}
+          >
+            <Share2 className="w-3 h-3" />
+            청첩장 공유하기
+          </button>
+
+          <p className="text-[10px] tracking-[0.3em]" style={{ color: "hsl(var(--muted-foreground) / 0.6)" }}>
+            희원 & 유정
+          </p>
+          <p className="text-[9px] mt-1" style={{ color: "hsl(var(--border))" }}>
+            2026. 07. 04
+          </p>
         </div>
       </motion.div>
     </section>
