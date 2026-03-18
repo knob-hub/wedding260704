@@ -18,7 +18,7 @@ const HeroSection = () => {
       />
       <div className="absolute inset-0 z-0" style={{ background: "hsl(var(--background) / 0.55)" }} />
       <motion.div
-        className="text-center"
+        className="text-center relative z-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease }}
