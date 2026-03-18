@@ -63,9 +63,9 @@ const LocationSection = () => {
         duration: 0.8,
         delay: 0.3
       }} className="bg-muted rounded-lg aspect-video mb-6 flex items-center justify-center overflow-hidden">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.3528977776583!2d127.0276368!3d37.4979503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca15aee9ab0fb%3A0x3e6e798b8f5b7e36!2sGangnam%20Station!5e0!3m2!1sen!2skr!4v1704067200000!5m2!1sen!2skr" width="100%" height="100%" style={{
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3158.5!2d126.7685!3d37.6425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z6rK96riwIOqzoOyWkeyLnCDsnbzsgrDrj5nqtawg6rCV7ISd66GcIDk!5e0!3m2!1sko!2skr!4v1704067200000!5m2!1sko!2skr" width="100%" height="100%" style={{
           border: 0
-        }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Wedding venue location" />
+        }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="더테라스 웨딩 위치" />
         </motion.div>
 
         {/* Map Buttons */}
