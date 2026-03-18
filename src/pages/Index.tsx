@@ -18,7 +18,7 @@ const Index = () => {
       <div className="relative z-10">
         <HeroSection />
 
-        <InfoSection />
+        <InfoSection onGalleryOpen={() => setGalleryOpen(true)} />
         <AccountSection />
       </div>
 
