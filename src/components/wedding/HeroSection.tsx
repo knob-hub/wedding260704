@@ -66,7 +66,7 @@ const HeroSection = () => {
             style={{
               objectFit: "contain",
               width: "100%",
-              maxWidth: "320px",
+              maxWidth: "240px",
               boxShadow: "0 8px 30px hsl(var(--blush) / 0.3)",
             }}
           />
