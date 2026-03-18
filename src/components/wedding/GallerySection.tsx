@@ -8,7 +8,6 @@ import gallery3 from "@/assets/gallery-3.jpg";
 
 // 여기에 사진을 추가하세요. import 후 images 배열에 넣으면 됩니다.
 // 예: import gallery4 from "@/assets/gallery-4.jpg";
-// 그리고 아래 images 배열에 gallery4 추가
 
 const GallerySection = () => {
   const ref = useRef(null);
@@ -17,7 +16,6 @@ const GallerySection = () => {
   const touchStartX = useRef<number | null>(null);
 
   const images = [gallery1, gallery2, gallery3];
-  // 사진 추가 시 위 배열에 추가하세요. 예: [gallery1, gallery2, gallery3, gallery4, gallery5, ...]
 
   const goNext = useCallback(() => {
     if (selectedIndex !== null) {
@@ -60,11 +58,10 @@ const GallerySection = () => {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1 }}
           className="max-w-md mx-auto"
         >
           <h2 className="wedding-title">갤러리</h2>
-
           <div className="wedding-divider" />
 
           <div className="grid grid-cols-2 gap-3">
@@ -74,15 +71,16 @@ const GallerySection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 + idx * 0.1 }}
-                className={`cursor-pointer overflow-hidden rounded-lg ${
+                className={`cursor-pointer overflow-hidden rounded-2xl ${
                   idx === 0 ? "col-span-2" : ""
                 }`}
+                style={{ boxShadow: "var(--glass-shadow)" }}
                 onClick={() => setSelectedIndex(idx)}
               >
                 <img
                   src={img}
                   alt={`Gallery ${idx + 1}`}
-                  className={`w-full object-cover transition-transform duration-500 hover:scale-105 ${
+                  className={`w-full object-cover transition-transform duration-700 hover:scale-105 ${
                     idx === 0 ? "aspect-video" : "aspect-square"
                   }`}
                 />
@@ -92,57 +90,62 @@ const GallerySection = () => {
         </motion.div>
       </section>
 
-      {/* Lightbox with swipe */}
+      {/* Lightbox */}
       {selectedIndex !== null && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center"
+          className="fixed inset-0 z-[60] flex items-center justify-center"
+          style={{ background: "hsl(30 5% 8% / 0.92)", backdropFilter: "blur(20px)" }}
           onClick={() => setSelectedIndex(null)}
           onKeyDown={handleKeyDown}
           tabIndex={0}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
-          {/* Close */}
           <button
-            className="absolute top-4 right-4 text-white/80 hover:text-white z-10"
+            className="absolute top-5 right-5 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+            style={{
+              background: "hsl(30 5% 20% / 0.5)",
+              color: "hsl(30 10% 90%)",
+            }}
             onClick={() => setSelectedIndex(null)}
           >
-            <X className="w-8 h-8" />
+            <X className="w-5 h-5" />
           </button>
 
-          {/* Prev */}
           <button
-            className="absolute left-2 top-1/2 -translate-y-1/2 text-white/60 hover:text-white z-10 p-2"
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+            style={{ background: "hsl(30 5% 20% / 0.3)", color: "hsl(30 10% 80%)" }}
             onClick={(e) => { e.stopPropagation(); goPrev(); }}
           >
-            <ChevronLeft className="w-8 h-8" />
+            <ChevronLeft className="w-6 h-6" />
           </button>
 
-          {/* Image */}
           <motion.img
             key={selectedIndex}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
             src={images[selectedIndex]}
             alt={`Gallery ${selectedIndex + 1}`}
-            className="max-w-[90%] max-h-[85vh] object-contain rounded-lg"
+            className="max-w-[90%] max-h-[85vh] object-contain rounded-xl"
             onClick={(e) => e.stopPropagation()}
           />
 
-          {/* Next */}
           <button
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-white/60 hover:text-white z-10 p-2"
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+            style={{ background: "hsl(30 5% 20% / 0.3)", color: "hsl(30 10% 80%)" }}
             onClick={(e) => { e.stopPropagation(); goNext(); }}
           >
-            <ChevronRight className="w-8 h-8" />
+            <ChevronRight className="w-6 h-6" />
           </button>
 
-          {/* Counter */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-sm">
+          <div
+            className="absolute bottom-5 left-1/2 -translate-x-1/2 text-xs tracking-widest"
+            style={{ color: "hsl(30 10% 60%)" }}
+          >
             {selectedIndex + 1} / {images.length}
           </div>
         </motion.div>
