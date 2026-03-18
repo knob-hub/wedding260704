@@ -101,11 +101,11 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'Noto Sans KR', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cormorant Garamond', 'Noto Serif KR', serif;
+    font-family: 'Gowun Batang', 'Cormorant Garamond', serif;
   }
 }
 
