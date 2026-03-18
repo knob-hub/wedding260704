@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import HeroSection from "@/components/wedding/HeroSection";
 import InfoSection from "@/components/wedding/InfoSection";
-import { GalleryButton, GalleryOverlay } from "@/components/wedding/GallerySection";
+import { GalleryOverlay } from "@/components/wedding/GallerySection";
 import AccountSection from "@/components/wedding/AccountSection";
 import BGMPlayer from "@/components/wedding/BGMPlayer";
 import WatercolorBackground from "@/components/wedding/WatercolorBackground";
