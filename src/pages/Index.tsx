@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import HeroSection from "@/components/wedding/HeroSection";
 import InfoSection from "@/components/wedding/InfoSection";
-import { GalleryButton, GalleryOverlay } from "@/components/wedding/GallerySection";
+import { GalleryOverlay } from "@/components/wedding/GallerySection";
 import AccountSection from "@/components/wedding/AccountSection";
 import BGMPlayer from "@/components/wedding/BGMPlayer";
 import WatercolorBackground from "@/components/wedding/WatercolorBackground";
@@ -18,12 +18,7 @@ const Index = () => {
       <div className="relative z-10">
         <HeroSection />
 
-        {/* Gallery button between hero and info */}
-        <div className="flex justify-center -mt-16 mb-8 relative z-10">
-          <GalleryButton onClick={() => setGalleryOpen(true)} />
-        </div>
-
-        <InfoSection />
+        <InfoSection onGalleryOpen={() => setGalleryOpen(true)} />
         <AccountSection />
       </div>
 
