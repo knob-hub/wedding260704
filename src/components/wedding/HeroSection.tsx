@@ -1,113 +1,108 @@
 import { motion, type Easing } from "framer-motion";
+import coupleImage from "@/assets/couple-main.jpg";
 
 const easeOutQuart: Easing = [0.25, 0.46, 0.45, 0.94];
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      {/* Soft glass card background */}
+    <section className="relative min-h-screen flex flex-col items-center justify-end overflow-hidden pb-16">
+      {/* Full-bleed couple image with editorial crop */}
       <motion.div
         className="absolute inset-0 z-0"
-        animate={{
-          background: [
-            "radial-gradient(circle at 50% 50%, transparent 0%, hsl(var(--background) / 0.2) 100%)",
-            "radial-gradient(circle at 30% 70%, transparent 0%, hsl(var(--background) / 0.3) 100%)",
-            "radial-gradient(circle at 70% 30%, transparent 0%, hsl(var(--background) / 0.2) 100%)",
-            "radial-gradient(circle at 50% 50%, transparent 0%, hsl(var(--background) / 0.2) 100%)",
-          ],
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Content */}
-      <motion.div
-        className="relative z-10 text-center px-6 py-20"
-        animate={{ y: [-3, 3, -3] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 2, ease: easeOutQuart }}
       >
+        <img
+          src={coupleImage}
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        {/* Cinematic gradient overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(0deg, hsl(var(--background)) 0%, hsl(var(--background) / 0.6) 30%, transparent 60%, hsl(var(--background) / 0.2) 100%)",
+          }}
+        />
+      </motion.div>
+
+      {/* Content — editorial bottom-aligned */}
+      <motion.div className="relative z-10 w-full max-w-lg mx-auto px-8 text-center">
         <motion.p
-          initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 1.2, delay: 0, ease: easeOutQuart }}
-          className="text-xs tracking-[0.4em] uppercase mb-10 font-light"
-          style={{ color: "hsl(var(--muted-foreground))" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.8, ease: easeOutQuart }}
+          className="section-label mb-8"
+          style={{ color: "hsl(var(--foreground) / 0.5)" }}
         >
           Wedding Invitation
         </motion.p>
 
-        <motion.div className="mb-10">
+        <div className="flex items-center justify-center gap-6 mb-6">
           <motion.h1
-            initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1.2, delay: 0.2, ease: easeOutQuart }}
-            className="text-4xl md:text-5xl font-light tracking-widest"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 1, ease: easeOutQuart }}
+            className="text-3xl md:text-4xl font-light tracking-[0.2em]"
             style={{ color: "hsl(var(--text-romantic))", fontFamily: "'Gowun Batang', serif" }}
           >
             김희원
           </motion.h1>
 
-          <motion.div
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={{ scaleX: 1, opacity: 1 }}
-            transition={{ duration: 1.4, delay: 0.8, ease: easeOutQuart }}
-            className="w-10 h-px mx-auto my-5"
-            style={{ background: "linear-gradient(90deg, transparent, hsl(var(--gold-light)), transparent)" }}
+          <motion.span
+            initial={{ scaleY: 0 }}
+            animate={{ scaleY: 1 }}
+            transition={{ duration: 0.8, delay: 1.4, ease: easeOutQuart }}
+            className="w-px h-8 block origin-center"
+            style={{ background: "hsl(var(--gold-light))" }}
           />
 
           <motion.h1
-            initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 1.2, delay: 0.4, ease: easeOutQuart }}
-            className="text-4xl md:text-5xl font-light tracking-widest"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 1, ease: easeOutQuart }}
+            className="text-3xl md:text-4xl font-light tracking-[0.2em]"
             style={{ color: "hsl(var(--text-romantic))", fontFamily: "'Gowun Batang', serif" }}
           >
             최유정
           </motion.h1>
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 1.2, delay: 0.6, ease: easeOutQuart }}
-          className="text-base font-light tracking-widest"
-          style={{ color: "hsl(var(--muted-foreground))" }}
-        >
-          결혼합니다
-        </motion.p>
+        </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 1.2, delay: 0.8, ease: easeOutQuart }}
-          className="mt-14 space-y-2"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.4, ease: easeOutQuart }}
+          className="space-y-1.5"
         >
-          <p className="font-light text-sm" style={{ color: "hsl(var(--foreground) / 0.7)" }}>
-            2026년 7월 4일 토요일 오후 2시
+          <p className="text-xs tracking-[0.3em] font-light" style={{ color: "hsl(var(--foreground) / 0.5)" }}>
+            2026. 07. 04 SAT PM 2:00
           </p>
-          <p className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>
+          <p className="text-[11px] tracking-wider" style={{ color: "hsl(var(--foreground) / 0.4)" }}>
             더테라스 웨딩 11층
           </p>
         </motion.div>
 
+        {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2.5 }}
-          className="mt-20"
+          className="mt-16 flex flex-col items-center gap-2"
         >
+          <motion.span
+            className="text-[9px] tracking-[0.4em] uppercase"
+            style={{ color: "hsl(var(--foreground) / 0.3)" }}
+          >
+            Scroll
+          </motion.span>
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-5 h-9 rounded-full mx-auto flex justify-center"
-            style={{ border: "1px solid hsl(var(--border))" }}
-          >
-            <motion.div
-              animate={{ y: [0, 8, 0], opacity: [0.4, 1, 0.4] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-0.5 h-2 rounded-full mt-2"
-              style={{ background: "hsl(var(--gold-light))" }}
-            />
-          </motion.div>
+            className="w-px h-8"
+            style={{ background: "linear-gradient(to bottom, hsl(var(--gold-light)), transparent)" }}
+          />
         </motion.div>
       </motion.div>
     </section>

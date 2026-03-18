@@ -5,7 +5,7 @@ import { MapPin, Phone, Navigation, Car, Train } from "lucide-react";
 
 const LocationSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   const handleNaverMap = () => {
     window.open("https://map.naver.com/v5/search/경기 고양시 일산동구 강석로 9", "_blank");
@@ -15,35 +15,37 @@ const LocationSection = () => {
   };
 
   return (
-    <section ref={ref} className="wedding-section">
+    <section ref={ref} className="py-28 px-6 bg-cream">
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1 }}
+        transition={{ duration: 1.2 }}
         className="max-w-md mx-auto"
       >
+        <p className="section-label">Location</p>
         <h2 className="wedding-title">오시는 길</h2>
         <div className="wedding-divider" />
 
+        {/* Venue info card */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="wedding-card mb-6"
         >
-          <div className="flex items-start gap-3 mb-4">
-            <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "hsl(var(--gold))" }} />
-            <div>
-              <p className="font-medium text-foreground text-sm mb-1">더테라스 웨딩</p>
-              <p className="text-xs leading-relaxed" style={{ color: "hsl(var(--muted-foreground))" }}>
-                경기 고양시 일산동구 강석로 9 11층
-                <br />
-                5층 그랜드볼룸
-              </p>
-            </div>
+          <div className="text-center mb-5">
+            <p className="font-medium text-foreground text-base tracking-wider mb-1" style={{ fontFamily: "'Gowun Batang', serif" }}>
+              더테라스 웨딩
+            </p>
+            <p className="text-xs leading-relaxed" style={{ color: "hsl(var(--muted-foreground))" }}>
+              경기 고양시 일산동구 강석로 9 · 11층
+            </p>
           </div>
-          <div className="flex items-center gap-3">
-            <Phone className="w-4 h-4 flex-shrink-0" style={{ color: "hsl(var(--gold))" }} />
+
+          <div className="h-px w-12 mx-auto mb-5" style={{ background: "hsl(var(--border))" }} />
+
+          <div className="flex items-center justify-center gap-2">
+            <Phone className="w-3 h-3" style={{ color: "hsl(var(--gold))" }} />
             <a
               href="tel:031-905-1001"
               className="text-xs transition-colors hover:underline"
@@ -59,7 +61,7 @@ const LocationSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="rounded-2xl aspect-video mb-6 overflow-hidden"
+          className="rounded-3xl aspect-video mb-4 overflow-hidden"
           style={{ boxShadow: "var(--glass-shadow)" }}
         >
           <iframe
@@ -74,16 +76,16 @@ const LocationSection = () => {
           />
         </motion.div>
 
-        {/* Map Buttons */}
+        {/* Map Buttons — pill style */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex gap-3 mb-8"
+          className="flex gap-2 mb-10"
         >
           <button
             onClick={handleNaverMap}
-            className="flex-1 py-3 px-4 rounded-xl text-xs font-medium flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
+            className="flex-1 py-3 rounded-full text-[11px] font-medium flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-[0.98]"
             style={{
               background: "hsl(var(--glass-bg))",
               backdropFilter: "blur(12px)",
@@ -91,12 +93,12 @@ const LocationSection = () => {
               color: "hsl(var(--foreground))",
             }}
           >
-            <Navigation className="w-3.5 h-3.5" />
+            <Navigation className="w-3 h-3" />
             네이버 지도
           </button>
           <button
             onClick={handleKakaoMap}
-            className="flex-1 py-3 px-4 rounded-xl text-xs font-medium flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
+            className="flex-1 py-3 rounded-full text-[11px] font-medium flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] active:scale-[0.98]"
             style={{
               background: "hsl(var(--glass-bg))",
               backdropFilter: "blur(12px)",
@@ -104,39 +106,41 @@ const LocationSection = () => {
               color: "hsl(var(--foreground))",
             }}
           >
-            <Navigation className="w-3.5 h-3.5" />
+            <Navigation className="w-3 h-3" />
             카카오맵
           </button>
         </motion.div>
 
-        {/* Transportation */}
+        {/* Transportation — inline tags */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="space-y-3"
         >
-          <div className="wedding-card">
-            <div className="flex items-start gap-3">
-              <Train className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "hsl(var(--gold))" }} />
-              <div>
-                <p className="font-medium text-foreground text-xs mb-1">지하철</p>
-                <p className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>
-                  3호선 백석역 5,6번 출구에서 도보 5분
-                </p>
-              </div>
+          <div className="wedding-card flex items-start gap-4">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+              style={{ background: "hsl(var(--gold) / 0.1)" }}>
+              <Train className="w-3.5 h-3.5" style={{ color: "hsl(var(--gold))" }} />
+            </div>
+            <div>
+              <p className="font-medium text-foreground text-xs mb-1 tracking-wider">지하철</p>
+              <p className="text-[11px] leading-relaxed" style={{ color: "hsl(var(--muted-foreground))" }}>
+                3호선 백석역 5,6번 출구에서 도보 5분
+              </p>
             </div>
           </div>
 
-          <div className="wedding-card">
-            <div className="flex items-start gap-3">
-              <Car className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: "hsl(var(--gold))" }} />
-              <div>
-                <p className="font-medium text-foreground text-xs mb-1">주차 안내</p>
-                <p className="text-xs" style={{ color: "hsl(var(--muted-foreground))" }}>
-                  건물 주차장 이용 (2시간 무료)
-                </p>
-              </div>
+          <div className="wedding-card flex items-start gap-4">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+              style={{ background: "hsl(var(--gold) / 0.1)" }}>
+              <Car className="w-3.5 h-3.5" style={{ color: "hsl(var(--gold))" }} />
+            </div>
+            <div>
+              <p className="font-medium text-foreground text-xs mb-1 tracking-wider">주차 안내</p>
+              <p className="text-[11px] leading-relaxed" style={{ color: "hsl(var(--muted-foreground))" }}>
+                건물 주차장 이용 (2시간 무료)
+              </p>
             </div>
           </div>
         </motion.div>
