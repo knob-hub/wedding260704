@@ -61,19 +61,19 @@ const AccountSection = () => {
     accounts: AccountInfo[]; isOpen: boolean; onToggle: () => void; tag: string;
   }) => (
     <div
-      className="overflow-hidden"
-      style={{ border: "1px solid hsl(var(--divider))" }}
+      className="rounded-2xl overflow-hidden"
+      style={{
+        background: "hsl(var(--glass-bg))",
+        backdropFilter: "blur(16px)",
+        border: "1px solid hsl(var(--glass-border))",
+        boxShadow: "var(--glass-shadow)",
+      }}
     >
       <button onClick={onToggle} className="w-full flex items-center justify-between px-5 py-4">
-        <span
-          className="text-[10px] tracking-[0.15em]"
-          style={{ color: "hsl(var(--foreground))" }}
-        >
-          {tag}
-        </span>
+        <span className="text-xs tracking-wider" style={{ color: "hsl(var(--foreground))" }}>{tag}</span>
         <ChevronDown
           className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-          style={{ color: "hsl(var(--silver))" }}
+          style={{ color: "hsl(var(--muted-foreground))" }}
         />
       </button>
 
@@ -83,27 +83,27 @@ const AccountSection = () => {
         transition={{ duration: 0.3 }}
         className="overflow-hidden"
       >
-        <div className="px-5 pb-5 space-y-2">
+        <div className="px-5 pb-5 space-y-3">
           {accounts.map((acc, idx) => (
             <div
               key={idx}
-              className="flex items-center justify-between px-4 py-3"
-              style={{ background: "hsl(var(--secondary))" }}
+              className="flex items-center justify-between rounded-xl px-4 py-3"
+              style={{ background: "hsl(var(--background) / 0.6)" }}
             >
               <div>
-                <p className="text-[9px] mb-0.5 tracking-wider" style={{ color: "hsl(var(--muted-foreground))" }}>
+                <p className="text-[10px] mb-0.5" style={{ color: "hsl(var(--muted-foreground))" }}>
                   {acc.relation} · {acc.bank}
                 </p>
-                <p className="text-[11px] tracking-wider" style={{ color: "hsl(var(--foreground))" }}>{acc.account}</p>
+                <p className="text-xs tracking-wider" style={{ color: "hsl(var(--foreground))" }}>{acc.account}</p>
               </div>
               <button
                 onClick={() => copyToClipboard(acc.account)}
-                className="w-8 h-8 flex items-center justify-center transition-colors"
-                style={{ background: "hsl(var(--accent))" }}
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+                style={{ background: "hsl(var(--blush) / 0.2)" }}
               >
                 {copiedAccount === acc.account
-                  ? <Check className="w-3 h-3" style={{ color: "hsl(var(--charcoal))" }} />
-                  : <Copy className="w-3 h-3" style={{ color: "hsl(var(--silver))" }} />}
+                  ? <Check className="w-3 h-3" style={{ color: "hsl(var(--primary))" }} />
+                  : <Copy className="w-3 h-3" style={{ color: "hsl(var(--muted-foreground))" }} />}
               </button>
             </div>
           ))}
@@ -113,18 +113,20 @@ const AccountSection = () => {
   );
 
   return (
-    <section ref={ref} className="magazine-section pb-24">
+    <section ref={ref} className="py-16 px-6 pb-24">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
         className="max-w-sm mx-auto"
       >
-        <div className="magazine-divider" />
+        <div className="w-6 h-px mx-auto mb-14" style={{ background: "hsl(var(--blush))" }} />
 
-        <p className="section-label mb-8">Gift</p>
+        <p className="text-center text-[10px] tracking-[0.3em] uppercase mb-6 font-light" style={{ color: "hsl(var(--muted-foreground))" }}>
+          Gift
+        </p>
 
-        <div className="space-y-2 mb-16">
+        <div className="space-y-2 mb-14">
           <AccordionCard accounts={groomAccounts} isOpen={openGroom} onToggle={() => setOpenGroom(!openGroom)} tag="신랑측 계좌번호" />
           <AccordionCard accounts={brideAccounts} isOpen={openBride} onToggle={() => setOpenBride(!openBride)} tag="신부측 계좌번호" />
         </div>
@@ -133,22 +135,23 @@ const AccountSection = () => {
         <div className="text-center">
           <button
             onClick={handleShare}
-            className="account-btn inline-flex items-center gap-2 mb-20"
+            className="inline-flex items-center gap-1.5 px-6 py-2.5 rounded-full text-[10px] tracking-wider transition-all active:scale-95 mb-16"
+            style={{
+              background: "hsl(var(--glass-bg))",
+              backdropFilter: "blur(12px)",
+              border: "1px solid hsl(var(--glass-border))",
+              color: "hsl(var(--text-romantic))",
+            }}
           >
             <Share2 className="w-3 h-3" />
             청첩장 공유하기
           </button>
 
-          <div className="magazine-divider" />
-
-          <p
-            className="text-[11px] tracking-[0.3em] font-light"
-            style={{ color: "hsl(var(--silver))", fontFamily: "'Cormorant Garamond', serif" }}
-          >
-            Heewon & Yujeong
+          <p className="text-[10px] tracking-[0.3em]" style={{ color: "hsl(var(--muted-foreground) / 0.6)" }}>
+            희원 & 유정
           </p>
-          <p className="text-[9px] tracking-[0.2em] mt-2" style={{ color: "hsl(var(--muted-foreground))" }}>
-            July 4, 2026
+          <p className="text-[9px] mt-1" style={{ color: "hsl(var(--blush))" }}>
+            2026. 07. 04
           </p>
         </div>
       </motion.div>
