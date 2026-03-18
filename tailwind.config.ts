@@ -71,7 +71,8 @@ export default {
       },
       fontFamily: {
         cormorant: ['Cormorant Garamond', 'serif'],
-        noto: ['Noto Serif KR', 'serif'],
+        noto: ['Noto Sans KR', 'sans-serif'],
+        gowun: ['Gowun Batang', 'serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
