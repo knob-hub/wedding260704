@@ -3,17 +3,21 @@ import InfoSection from "@/components/wedding/InfoSection";
 import GallerySection from "@/components/wedding/GallerySection";
 import AccountSection from "@/components/wedding/AccountSection";
 import BGMPlayer from "@/components/wedding/BGMPlayer";
+import WatercolorBackground from "@/components/wedding/WatercolorBackground";
 
 const Index = () => {
   const bgmSrc = "/bgm/wedding-music.mp3";
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen relative">
+      <WatercolorBackground />
       <BGMPlayer audioSrc={bgmSrc} />
-      <HeroSection />
-      <GallerySection />
-      <InfoSection />
-      <AccountSection />
+      <div className="relative z-10">
+        <HeroSection />
+        <GallerySection />
+        <InfoSection />
+        <AccountSection />
+      </div>
     </main>
   );
 };

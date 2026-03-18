@@ -47,40 +47,49 @@ const InfoSection = () => {
           <p className="text-center text-[10px] tracking-[0.3em] uppercase mb-6 font-light" style={{ color: "hsl(var(--muted-foreground))" }}>
             July 2026
           </p>
-          <div className="grid grid-cols-7 gap-0 text-center max-w-[280px] mx-auto">
-            {calendarDays.map((week, weekIdx) =>
-              week.map((day, dayIdx) => {
-                const isHeader = weekIdx === 0;
-                const isWeddingDay = day === "4" && weekIdx > 0;
-                const isSunday = dayIdx === 0 && !isHeader;
+          <div
+            className="rounded-2xl p-5 max-w-[280px] mx-auto"
+            style={{
+              background: "hsl(var(--glass-bg))",
+              backdropFilter: "blur(16px)",
+              border: "1px solid hsl(var(--glass-border))",
+            }}
+          >
+            <div className="grid grid-cols-7 gap-0 text-center">
+              {calendarDays.map((week, weekIdx) =>
+                week.map((day, dayIdx) => {
+                  const isHeader = weekIdx === 0;
+                  const isWeddingDay = day === "4" && weekIdx > 0;
+                  const isSunday = dayIdx === 0 && !isHeader;
 
-                return (
-                  <div
-                    key={`${weekIdx}-${dayIdx}`}
-                    className="py-2 text-[11px] relative"
-                    style={
-                      isHeader
-                        ? { color: "hsl(var(--muted-foreground))", fontSize: "9px", letterSpacing: "0.15em" }
-                        : isWeddingDay
-                        ? { color: "hsl(var(--primary-foreground))", fontWeight: 500 }
-                        : isSunday
-                        ? { color: "hsl(var(--gold))" }
-                        : { color: "hsl(var(--foreground) / 0.4)" }
-                    }
-                  >
-                    {isWeddingDay && (
-                      <span className="absolute inset-0 m-auto w-7 h-7 rounded-full" style={{ background: "hsl(var(--primary))" }} />
-                    )}
-                    <span className="relative z-10">{day}</span>
-                  </div>
-                );
-              })
-            )}
+                  return (
+                    <div
+                      key={`${weekIdx}-${dayIdx}`}
+                      className="py-2 text-[11px] relative"
+                      style={
+                        isHeader
+                          ? { color: "hsl(var(--muted-foreground))", fontSize: "9px", letterSpacing: "0.15em" }
+                          : isWeddingDay
+                          ? { color: "hsl(var(--primary-foreground))", fontWeight: 500 }
+                          : isSunday
+                          ? { color: "hsl(var(--primary))" }
+                          : { color: "hsl(var(--foreground) / 0.4)" }
+                      }
+                    >
+                      {isWeddingDay && (
+                        <span className="absolute inset-0 m-auto w-7 h-7 rounded-full" style={{ background: "hsl(var(--primary))" }} />
+                      )}
+                      <span className="relative z-10">{day}</span>
+                    </div>
+                  );
+                })
+              )}
+            </div>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="w-6 h-px mx-auto mb-14" style={{ background: "hsl(var(--border))" }} />
+        <div className="w-6 h-px mx-auto mb-14" style={{ background: "hsl(var(--blush))" }} />
 
         {/* Location */}
         <div className="text-center mb-8">
@@ -118,7 +127,12 @@ const InfoSection = () => {
           <button
             onClick={handleNaverMap}
             className="flex-1 py-2.5 rounded-full text-[10px] flex items-center justify-center gap-1 transition-all active:scale-95"
-            style={{ border: "1px solid hsl(var(--border))", color: "hsl(var(--foreground) / 0.7)" }}
+            style={{
+              background: "hsl(var(--glass-bg))",
+              backdropFilter: "blur(12px)",
+              border: "1px solid hsl(var(--glass-border))",
+              color: "hsl(var(--foreground) / 0.7)",
+            }}
           >
             <Navigation className="w-2.5 h-2.5" />
             네이버 지도
@@ -126,14 +140,19 @@ const InfoSection = () => {
           <button
             onClick={handleKakaoMap}
             className="flex-1 py-2.5 rounded-full text-[10px] flex items-center justify-center gap-1 transition-all active:scale-95"
-            style={{ border: "1px solid hsl(var(--border))", color: "hsl(var(--foreground) / 0.7)" }}
+            style={{
+              background: "hsl(var(--glass-bg))",
+              backdropFilter: "blur(12px)",
+              border: "1px solid hsl(var(--glass-border))",
+              color: "hsl(var(--foreground) / 0.7)",
+            }}
           >
             <Navigation className="w-2.5 h-2.5" />
             카카오맵
           </button>
         </div>
 
-        {/* Transportation - compact */}
+        {/* Transportation */}
         <div className="space-y-3 text-[11px]">
           <div className="flex items-start gap-3">
             <Train className="w-3.5 h-3.5 mt-0.5 flex-shrink-0" style={{ color: "hsl(var(--muted-foreground))" }} />
