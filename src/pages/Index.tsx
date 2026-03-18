@@ -16,6 +16,8 @@ const Index = () => {
   return (
     <main className="min-h-screen relative">
       <WatercolorBackground />
+      <FloatingPetals />
+      <SparkleEffect />
       <BGMPlayer audioSrc={bgmSrc} />
       <div className="relative z-10">
         <HeroSection />
