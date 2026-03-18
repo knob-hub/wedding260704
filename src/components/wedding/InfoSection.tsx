@@ -1,8 +1,13 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Navigation, Phone, Train, Car } from "lucide-react";
+import { GalleryButton } from "@/components/wedding/GallerySection";
 
-const InfoSection = () => {
+interface InfoSectionProps {
+  onGalleryOpen?: () => void;
+}
+
+const InfoSection = ({ onGalleryOpen }: InfoSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
