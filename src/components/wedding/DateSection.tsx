@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import { Calendar } from "lucide-react";
 const DateSection = () => {
   const ref = useRef(null);
