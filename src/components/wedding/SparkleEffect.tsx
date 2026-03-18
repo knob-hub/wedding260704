@@ -13,19 +13,25 @@ const SparkleEffect = () => {
   const [sparkles, setSparkles] = useState<Sparkle[]>([]);
 
   useEffect(() => {
-    const generateSparkles = () => {
-      const newSparkles: Sparkle[] = Array.from({ length: 30 }, (_, i) => ({
-        id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: 2 + Math.random() * 4,
-        delay: Math.random() * 5,
-      }));
-      setSparkles(newSparkles);
-    };
-
-    generateSparkles();
-    const interval = setInterval(generateSparkles, 10000);
+    const newSparkles: Sparkle[] = Array.from({ length: 15 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: 1.5 + Math.random() * 2.5,
+      delay: Math.random() * 6,
+    }));
+    setSparkles(newSparkles);
+    const interval = setInterval(() => {
+      setSparkles(
+        Array.from({ length: 15 }, (_, i) => ({
+          id: i,
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: 1.5 + Math.random() * 2.5,
+          delay: Math.random() * 6,
+        }))
+      );
+    }, 12000);
     return () => clearInterval(interval);
   }, []);
 
@@ -34,22 +40,23 @@ const SparkleEffect = () => {
       {sparkles.map((sparkle) => (
         <motion.div
           key={sparkle.id}
-          className="absolute rounded-full bg-gold"
+          className="absolute rounded-full"
           style={{
             left: `${sparkle.x}%`,
             top: `${sparkle.y}%`,
             width: sparkle.size,
             height: sparkle.size,
+            background: "hsl(35 18% 65%)",
           }}
           animate={{
-            opacity: [0, 1, 0],
-            scale: [0, 1.5, 0],
+            opacity: [0, 0.6, 0],
+            scale: [0, 1.2, 0],
           }}
           transition={{
-            duration: 2,
+            duration: 2.5,
             delay: sparkle.delay,
             repeat: Infinity,
-            repeatDelay: 3 + Math.random() * 4,
+            repeatDelay: 4 + Math.random() * 5,
           }}
         />
       ))}

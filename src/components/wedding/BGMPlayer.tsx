@@ -17,42 +17,42 @@ const BGMPlayer = ({ audioSrc }: BGMPlayerProps) => {
       if (!hasInteracted && audioRef.current && audioSrc) {
         setHasInteracted(true);
         setShowPrompt(false);
-        audioRef.current.play().then(() => {
-          setIsPlaying(true);
-        }).catch(() => {
-          // Autoplay blocked, user needs to click
-          setShowPrompt(true);
-        });
+        audioRef.current
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch(() => setShowPrompt(true));
       }
     };
-
     window.addEventListener("scroll", handleScroll, { once: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [hasInteracted, audioSrc]);
 
   const togglePlay = () => {
     if (!audioRef.current || !audioSrc) return;
-    
     setShowPrompt(false);
     setHasInteracted(true);
-    
     if (isPlaying) {
       audioRef.current.pause();
       setIsPlaying(false);
     } else {
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch(console.error);
+      audioRef.current.play().then(() => setIsPlaying(true)).catch(console.error);
     }
   };
 
   if (!audioSrc) {
     return (
       <div className="fixed top-6 right-6 z-50">
-        <div className="w-12 h-12 rounded-full bg-white/80 backdrop-blur-md shadow-lg flex items-center justify-center text-muted-foreground">
-          <Music className="w-5 h-5" />
+        <div
+          className="w-10 h-10 rounded-full flex items-center justify-center"
+          style={{
+            background: "hsl(var(--glass-bg))",
+            backdropFilter: "blur(12px)",
+            border: "1px solid hsl(var(--glass-border))",
+            color: "hsl(var(--muted-foreground))",
+          }}
+        >
+          <Music className="w-4 h-4" />
         </div>
-        <p className="text-xs text-muted-foreground mt-2 text-center">BGM 준비중</p>
       </div>
     );
   }
@@ -60,11 +60,16 @@ const BGMPlayer = ({ audioSrc }: BGMPlayerProps) => {
   return (
     <>
       <audio ref={audioRef} src={audioSrc} loop preload="auto" />
-      
-      {/* Floating player button */}
+
       <motion.button
         onClick={togglePlay}
-        className="fixed top-6 right-6 z-50 w-12 h-12 rounded-full bg-white/80 backdrop-blur-md shadow-lg flex items-center justify-center text-romantic hover:bg-white transition-all duration-300"
+        className="fixed top-6 right-6 z-50 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+        style={{
+          background: "hsl(var(--glass-bg))",
+          backdropFilter: "blur(12px)",
+          border: "1px solid hsl(var(--glass-border))",
+          color: "hsl(var(--text-romantic))",
+        }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         initial={{ opacity: 0, y: -20 }}
@@ -73,46 +78,28 @@ const BGMPlayer = ({ audioSrc }: BGMPlayerProps) => {
       >
         <AnimatePresence mode="wait">
           {isPlaying ? (
-            <motion.div
-              key="playing"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0 }}
-              className="relative"
-            >
-              <Volume2 className="w-5 h-5" />
-              {/* Audio visualizer bars */}
+            <motion.div key="playing" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} className="relative">
+              <Volume2 className="w-4 h-4" />
               <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 flex gap-0.5">
                 {[...Array(3)].map((_, i) => (
                   <motion.div
                     key={i}
-                    className="w-0.5 bg-romantic rounded-full"
-                    animate={{
-                      height: ["4px", "8px", "4px"],
-                    }}
-                    transition={{
-                      duration: 0.5,
-                      repeat: Infinity,
-                      delay: i * 0.1,
-                    }}
+                    className="w-0.5 rounded-full"
+                    style={{ background: "hsl(var(--gold))" }}
+                    animate={{ height: ["3px", "6px", "3px"] }}
+                    transition={{ duration: 0.5, repeat: Infinity, delay: i * 0.1 }}
                   />
                 ))}
               </div>
             </motion.div>
           ) : (
-            <motion.div
-              key="paused"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0 }}
-            >
-              <VolumeX className="w-5 h-5" />
+            <motion.div key="paused" initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+              <VolumeX className="w-4 h-4" />
             </motion.div>
           )}
         </AnimatePresence>
       </motion.button>
 
-      {/* Initial prompt */}
       <AnimatePresence>
         {showPrompt && (
           <motion.div
@@ -120,12 +107,19 @@ const BGMPlayer = ({ audioSrc }: BGMPlayerProps) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ delay: 1.5 }}
-            className="fixed top-20 right-4 z-50 bg-white/90 backdrop-blur-md rounded-2xl px-4 py-3 shadow-lg max-w-[180px]"
+            className="fixed top-[4.5rem] right-4 z-50 rounded-2xl px-4 py-3 max-w-[160px]"
+            style={{
+              background: "hsl(var(--glass-bg))",
+              backdropFilter: "blur(16px)",
+              border: "1px solid hsl(var(--glass-border))",
+              boxShadow: "var(--glass-shadow)",
+            }}
           >
-            <p className="text-xs text-romantic text-center leading-relaxed">
-              스크롤하시면<br />음악이 시작됩니다 🎵
+            <p className="text-[10px] text-center leading-relaxed" style={{ color: "hsl(var(--text-romantic))" }}>
+              스크롤하시면
+              <br />
+              음악이 시작됩니다 🎵
             </p>
-            <div className="absolute -top-2 right-6 w-4 h-4 bg-white/90 rotate-45" />
           </motion.div>
         )}
       </AnimatePresence>
