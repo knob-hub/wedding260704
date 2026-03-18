@@ -62,7 +62,7 @@ const HeroSection = () => {
           <img
             src={couplePhoto}
             alt="커플 사진"
-            className="w-52 md:w-64 rounded-xl shadow-lg"
+            className="w-60 md:w-72 rounded-xl shadow-lg"
             style={{
               aspectRatio: "3/4",
               objectFit: "cover",
