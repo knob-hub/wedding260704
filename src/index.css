@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 30 25% 96%;
+    --background: 0 0% 100%;
     --foreground: 340 10% 20%;
 
     --card: 30 20% 97%;
@@ -46,10 +46,10 @@
     --text-romantic: 340 12% 28%;
 
     /* Watercolor gradient */
-    --watercolor-start: 340 28% 88%;
-    --watercolor-mid: 20 22% 92%;
-    --watercolor-end: 30 25% 96%;
-    --watercolor-accent: 340 22% 82%;
+    --watercolor-start: 0 0% 100%;
+    --watercolor-mid: 0 0% 100%;
+    --watercolor-end: 0 0% 100%;
+    --watercolor-accent: 0 0% 100%;
 
     /* Glassmorphism */
     --glass-bg: 0 0% 100% / 0.45;
